@@ -1,8 +1,10 @@
 SFML_LIB = -lsfml-graphics -lsfml-window -lsfml-system
 SFML_PATH = ./SFML-2.4.2
-CXX = g++ -std=c++11
+CXX = /usr/bin/g++-4.9 -std=c++11
 
 all: test
+
+run: test
 	export LD_LIBRARY_PATH=$(SFML_PATH)/lib && ./$<
 
 %.o: %.cpp
