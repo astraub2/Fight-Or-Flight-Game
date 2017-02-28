@@ -15,22 +15,26 @@ public:
 	enum BulletOrShieldType {
 		METAL,
 		PlASMA,
-		NULL
+		NONE
 	};
 	enum PlayerMoveType {
-			MOVE,
-			SHOOT,
-			SHIELD
+		MOVE,
+		SHOOT,
+		SHIELD
 	};
-	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player movingPlayer);
+	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset/*, Player* movingPlayer*/);
 	~PlayerMove();
 	PlayerMoveType getPlayerMove();
 	BulletOrShieldType getBulletOrShieldType();
 	int getXOffset();
 	int getYOffset();
+	void setPlayerMove(PlayerMoveType moveType);
+	void setBulletOrShieldType(BulletOrShieldType type);
+	void setXOffset(int newOffset);
+	void setYOffset(int newOffset);
 
 private:
-	Player movingPlayer;
+	//Player* movingPlayer;
 	PlayerMoveType playerMove;
 	BulletOrShieldType bulletOrShieldType;
 	int xOffset;

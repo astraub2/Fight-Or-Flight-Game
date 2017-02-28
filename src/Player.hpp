@@ -23,9 +23,10 @@ public:
 	virtual void shield(PlayerMove::BulletOrShieldType shieldType); // shieldType: 0 = metal shield, 1 = thermionic reflector
 	virtual void reload();
 
-	virtual PlayerMove playMove();
+	virtual void playMove();
 
 private:
+	PlayerMove turnMove;
 	virtual void setXPosition(int newX);
 	virtual void setYPosition(int newY);
 	int x;
