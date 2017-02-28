@@ -23,7 +23,7 @@ public:
 		SHIELD,
 		RELOAD
 	};
-	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer);
+	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer, bool secondMove);
 	~PlayerMove();
 	PlayerMoveType getPlayerMove();
 	BulletOrShieldType getBulletOrShieldType();
@@ -35,6 +35,7 @@ public:
 	void setYOffset(int newOffset);
 
 private:
+	bool secondMove;
 	Player* movingPlayer;
 	PlayerMoveType playerMove;
 	BulletOrShieldType bulletOrShieldType;

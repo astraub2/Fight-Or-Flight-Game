@@ -21,6 +21,7 @@ public:
 
 private:
 	std::vector< std::vector<Point> > board;
+	std::vector<Player> playerList;
 	int size;
 };
 

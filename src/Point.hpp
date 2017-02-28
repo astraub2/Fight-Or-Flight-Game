@@ -12,7 +12,7 @@
 
 class Point {
 public:
-	Point();
+	Point(Player* player, int x, int y);
 	~Point();
 	Player* getPlayer();
 	void setPlayer(Player* setPlayer);
