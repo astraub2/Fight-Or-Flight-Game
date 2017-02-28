@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
@@ -54,36 +55,48 @@ int main() {
 	// *****board *********
 	//I will figure out a way to do this iterativly, just testing
 	sf::RectangleShape a0(sf::Vector2f(25, 25));
-	a0.setFillColor(sf::Color::Blue);
-	a0.move(200, 50);
 	sf::RectangleShape a1(sf::Vector2f(25, 25));
-	a1.setFillColor(sf::Color::Blue);
-	a1.move(226, 50);
 	sf::RectangleShape a2(sf::Vector2f(25, 25));
-	a2.setFillColor(sf::Color::Blue);
-	a2.move(252, 50);
 	sf::RectangleShape a3(sf::Vector2f(25, 25));
-	a3.setFillColor(sf::Color::Blue);
-	a3.move(278, 50);
 	sf::RectangleShape a4(sf::Vector2f(25, 25));
-	a4.setFillColor(sf::Color::Blue);
-	a4.move(304, 50);
-	sf::RectangleShape b0(sf::Vector2f(25, 25));
+	sf::RectangleShape points[]={a0, a1, a2, a3,a4};
+	for (int i=0; i<5; i++){
+		std::cout <<"yes"<< std::endl;
+		points[i].setFillColor(sf::Color::Blue);
+		points[i].move(200+(i*26), 50);
+	}
 
-	b0.setFillColor(sf::Color::Blue);
-	b0.move(200, 76);
-	sf::RectangleShape b1(sf::Vector2f(25, 25));
-	b1.setFillColor(sf::Color::Blue);
-	b1.move(226, 76);
-	sf::RectangleShape b2(sf::Vector2f(25, 25));
-	b2.setFillColor(sf::Color::Blue);
-	b2.move(252, 76);
-	sf::RectangleShape b3(sf::Vector2f(25, 25));
-	b3.setFillColor(sf::Color::Blue);
-	b3.move(278, 76);
-	sf::RectangleShape b4(sf::Vector2f(25, 25));
-	b4.setFillColor(sf::Color::Blue);
-	b4.move(304, 76);
+	// sf::RectangleShape a0(sf::Vector2f(25, 25));
+	// a0.setFillColor(sf::Color::Blue);
+	// a0.move(200, 50);
+	// sf::RectangleShape a1(sf::Vector2f(25, 25));
+	// a1.setFillColor(sf::Color::Blue);
+	// a1.move(226, 50);
+	// sf::RectangleShape a2(sf::Vector2f(25, 25));
+	// a2.setFillColor(sf::Color::Blue);
+	// a2.move(252, 50);
+	// sf::RectangleShape a3(sf::Vector2f(25, 25));
+	// a3.setFillColor(sf::Color::Blue);
+	// a3.move(278, 50);
+	// sf::RectangleShape a4(sf::Vector2f(25, 25));
+	// a4.setFillColor(sf::Color::Blue);
+	// a4.move(304, 50);
+	// sf::RectangleShape b0(sf::Vector2f(25, 25));
+
+	// b0.setFillColor(sf::Color::Blue);
+	// b0.move(200, 76);
+	// sf::RectangleShape b1(sf::Vector2f(25, 25));
+	// b1.setFillColor(sf::Color::Blue);
+	// b1.move(226, 76);
+	// sf::RectangleShape b2(sf::Vector2f(25, 25));
+	// b2.setFillColor(sf::Color::Blue);
+	// b2.move(252, 76);
+	// sf::RectangleShape b3(sf::Vector2f(25, 25));
+	// b3.setFillColor(sf::Color::Blue);
+	// b3.move(278, 76);
+	// sf::RectangleShape b4(sf::Vector2f(25, 25));
+	// b4.setFillColor(sf::Color::Blue);
+	// b4.move(304, 76);
 	
 
 
@@ -130,11 +143,11 @@ int main() {
 		window.draw(a2);
 		window.draw(a3);
 		window.draw(a4);
-		window.draw(b0);
-		window.draw(b1);
-		window.draw(b2);
-		window.draw(b3);
-		window.draw(b4);
+		// window.draw(b0);
+		// window.draw(b1);
+		// window.draw(b2);
+		// window.draw(b3);
+		// window.draw(b4);
 
 		//left column
 		window.display();
