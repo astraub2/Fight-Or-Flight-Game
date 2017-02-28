@@ -9,6 +9,7 @@
 #define GAME_HPP_
 
 #include "Player.hpp"
+#include "Point.hpp"
 #include <vector>
 
 class Game {
@@ -19,7 +20,7 @@ public:
 	void playRound();
 
 private:
-	std::vector< std::vector<Player> > board;
+	std::vector< std::vector<Point> > board;
 	int size;
 };
 
