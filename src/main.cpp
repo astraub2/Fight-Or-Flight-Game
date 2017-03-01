@@ -9,6 +9,12 @@ int main() {
 	if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
 		std::cout << "Error: Font not found" << std::endl;
 	}
+	sf::Texture texture;
+	if (!texture.loadFromFile("purple.jpeg", sf::IntRect(0, 0, 25, 25)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	texture.setSmooth(true);
 	//** the format of the board, replaced with pics later?? ***
 
 	//right column
@@ -54,17 +60,26 @@ int main() {
 
 	// *****board *********
 	//I will figure out a way to do this iterativly, just testing
-	sf::RectangleShape a0(sf::Vector2f(25, 25));
-	sf::RectangleShape a1(sf::Vector2f(25, 25));
-	sf::RectangleShape a2(sf::Vector2f(25, 25));
-	sf::RectangleShape a3(sf::Vector2f(25, 25));
-	sf::RectangleShape a4(sf::Vector2f(25, 25));
-	sf::RectangleShape points[]={a0, a1, a2, a3,a4};
-	for (int i=0; i<5; i++){
-		std::cout <<"yes"<< std::endl;
-		points[i].setFillColor(sf::Color::Blue);
-		points[i].move(200+(i*26), 50);
-	}
+	 
+	sf::Sprite map[15][15];
+	for(int i = 0; i < 15; i++){   
+	    for(int j = 0; j < 15; j++){ 
+	    	map[i][j].setTexture(texture); 
+	        map[i][j].move(sf::Vector2f(200+(i*26), 50+(j*26)));
+	    }  
+	} 
+
+	// sf::RectangleShape a0(sf::Vector2f(25, 25));
+	// sf::RectangleShape a1(sf::Vector2f(25, 25));
+	// sf::RectangleShape a2(sf::Vector2f(25, 25));
+	// sf::RectangleShape a3(sf::Vector2f(25, 25));
+	// sf::RectangleShape a4(sf::Vector2f(25, 25));
+	// sf::RectangleShape points[]={a0, a1, a2, a3,a4};
+	// for (int i=0; i<5; i++){
+
+	// 	points[i].setFillColor(sf::Color::Blue);
+	// 	points[i].move(200+(i*26), 50);
+	// }
 
 	// sf::RectangleShape a0(sf::Vector2f(25, 25));
 	// a0.setFillColor(sf::Color::Blue);
@@ -138,11 +153,16 @@ int main() {
 		window.draw(moveText);
 
 		//**board**
-		window.draw(a0);
-		window.draw(a1);
-		window.draw(a2);
-		window.draw(a3);
-		window.draw(a4);
+		for(int i = 0; i < 15; i++){   
+	    for(int j = 0; j < 15; j++){  
+	       window.draw(map[i][j]);
+	       	    }  
+	}
+		// window.draw(a0);
+		// window.draw(a1);
+		// window.draw(a2);
+		// window.draw(a3);
+		// window.draw(a4);
 		// window.draw(b0);
 		// window.draw(b1);
 		// window.draw(b2);
