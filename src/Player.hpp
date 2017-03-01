@@ -23,6 +23,8 @@ public:
 	virtual void shield(PlayerMove::BulletOrShieldType shieldType); // shieldType: 0 = metal shield, 1 = thermionic reflector
 	virtual void reload();
 
+	virtual void setMarkedForDeath(bool mark);
+
 	virtual PlayerMove playMove();
 
 private:
@@ -31,6 +33,8 @@ private:
 	int x;
 	int y;
 	int ammo;
+	Point* movingTo;
+	bool markedForDeath;
 };
 
 
