@@ -9,15 +9,15 @@ int main() {
 	if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
 		std::cout << "Error: Font not found" << std::endl;
 	}
-	sf::Texture texture;
-	if (!texture.loadFromFile("purple.jpeg", sf::IntRect(0, 0, 25, 25)))
+	sf::Texture tiletexture;
+	if (!tiletexture.loadFromFile("purple.jpeg", sf::IntRect(0, 0, 25, 25)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	texture.setSmooth(true);
+	tiletexture.setSmooth(true);
 	//** the format of the board, replaced with pics later?? ***
 
-	//right column
+	//left column
 	sf::Text loadText;
 	sf::Text shootText;
 	sf::Text shieldText;
@@ -38,9 +38,6 @@ int main() {
 	shootText.setCharacterSize(16);
 	shieldText.setCharacterSize(16);
 	moveText.setCharacterSize(16);
-
-	//text1.setFillColor(sf::Color::Green);
-	//text2.setFillColor(sf::Color::Red);
 	
 	sf::RectangleShape loadButton(sf::Vector2f(80, 50));
 	loadButton.setFillColor(sf::Color::Red);
@@ -64,57 +61,12 @@ int main() {
 	sf::Sprite map[15][15];
 	for(int i = 0; i < 15; i++){   
 	    for(int j = 0; j < 15; j++){ 
-	    	map[i][j].setTexture(texture); 
+	    	map[i][j].setTexture(tiletexture); 
 	        map[i][j].move(sf::Vector2f(200+(i*26), 50+(j*26)));
 	    }  
 	} 
 
-	// sf::RectangleShape a0(sf::Vector2f(25, 25));
-	// sf::RectangleShape a1(sf::Vector2f(25, 25));
-	// sf::RectangleShape a2(sf::Vector2f(25, 25));
-	// sf::RectangleShape a3(sf::Vector2f(25, 25));
-	// sf::RectangleShape a4(sf::Vector2f(25, 25));
-	// sf::RectangleShape points[]={a0, a1, a2, a3,a4};
-	// for (int i=0; i<5; i++){
-
-	// 	points[i].setFillColor(sf::Color::Blue);
-	// 	points[i].move(200+(i*26), 50);
-	// }
-
-	// sf::RectangleShape a0(sf::Vector2f(25, 25));
-	// a0.setFillColor(sf::Color::Blue);
-	// a0.move(200, 50);
-	// sf::RectangleShape a1(sf::Vector2f(25, 25));
-	// a1.setFillColor(sf::Color::Blue);
-	// a1.move(226, 50);
-	// sf::RectangleShape a2(sf::Vector2f(25, 25));
-	// a2.setFillColor(sf::Color::Blue);
-	// a2.move(252, 50);
-	// sf::RectangleShape a3(sf::Vector2f(25, 25));
-	// a3.setFillColor(sf::Color::Blue);
-	// a3.move(278, 50);
-	// sf::RectangleShape a4(sf::Vector2f(25, 25));
-	// a4.setFillColor(sf::Color::Blue);
-	// a4.move(304, 50);
-	// sf::RectangleShape b0(sf::Vector2f(25, 25));
-
-	// b0.setFillColor(sf::Color::Blue);
-	// b0.move(200, 76);
-	// sf::RectangleShape b1(sf::Vector2f(25, 25));
-	// b1.setFillColor(sf::Color::Blue);
-	// b1.move(226, 76);
-	// sf::RectangleShape b2(sf::Vector2f(25, 25));
-	// b2.setFillColor(sf::Color::Blue);
-	// b2.move(252, 76);
-	// sf::RectangleShape b3(sf::Vector2f(25, 25));
-	// b3.setFillColor(sf::Color::Blue);
-	// b3.move(278, 76);
-	// sf::RectangleShape b4(sf::Vector2f(25, 25));
-	// b4.setFillColor(sf::Color::Blue);
-	// b4.move(304, 76);
 	
-
-
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -158,17 +110,7 @@ int main() {
 	       window.draw(map[i][j]);
 	       	    }  
 	}
-		// window.draw(a0);
-		// window.draw(a1);
-		// window.draw(a2);
-		// window.draw(a3);
-		// window.draw(a4);
-		// window.draw(b0);
-		// window.draw(b1);
-		// window.draw(b2);
-		// window.draw(b3);
-		// window.draw(b4);
-
+		
 		//left column
 		window.display();
 	}
