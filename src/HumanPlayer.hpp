@@ -1,20 +1,19 @@
 /*
- * Player.hpp
+ * HumanPlayer.hpp
  *
- *  Created on: Feb 21, 2017
+ *  Created on: Mar 2, 2017
  *      Author: sean
  */
 
-#ifndef PLAYER_HPP_
-#define PLAYER_HPP_
+#ifndef HUMANPLAYER_HPP_
+#define HUMANPLAYER_HPP_
 
-#include "PlayerMove.hpp"
-#include "Game.hpp"
+#include "Player.hpp"
 
-class Player {
+class HumanPlayer : public Player {
 public:
-	Player(int x, int y, Game* game);
-	virtual ~Player();
+	HumanPlayer(int x, int y, Game* game);
+	virtual ~HumanPlayer();
 	virtual int getXPosition();
 	virtual int getYPosition();
 	virtual int getAmmo();
@@ -44,4 +43,4 @@ private:
 
 
 
-#endif /* PLAYER_HPP_ */
+#endif /* HUMANPLAYER_HPP_ */
