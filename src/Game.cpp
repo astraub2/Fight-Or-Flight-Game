@@ -3,12 +3,10 @@
 #include <vector>
 #include "PlayerMove.hpp"
 
-Game::Game() {
+Game::Game() : size(15) {
 	// TODO: include logic for creating the board
-	board = std::vector< std::vector<Point> >;
-	for (int i = 0; i < 15; i++) {
-		board[i] = std::vector<Point>;
-		for (int j = 0; j < 15; j++) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			board[i][j] = Point(nullptr, i, j);
 		}
 	}
@@ -27,9 +25,16 @@ int Game::getSize() {
 }
 
 void Game::playRound() {
+	//TODO:
 	//loop through player list, calling playMove() on each one
 	//shove results into a vector of PlayerMoves
 	//loop through this vector and do the specified move to the player, moving players before shooting
 	//(loop through twice to handle this)
 	//marks handled in the player functions
+	//kill all players marked for death
+	//reset shieldType, movingTo at the end
+}
+
+Point* getPoint(int x, int y) {
+	return &(board[x][y]);
 }

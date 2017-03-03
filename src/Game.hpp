@@ -18,6 +18,7 @@ public:
 	~Game();
 	int getSize();
 	void playRound();
+	Point* getPoint(int x, int y);
 
 private:
 	std::vector< std::vector<Point> > board;
