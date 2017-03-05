@@ -10,14 +10,16 @@
 
 #include "PlayerMove.hpp"
 #include "Game.hpp"
+#include "Point.hpp"
 
 class Player {
 public:
-	Player(int x, int y, Game* game);
+	Player(int x, int y, Game game);
 	virtual ~Player();
 	virtual int getXPosition();
 	virtual int getYPosition();
 	virtual int getAmmo();
+	virtual PlayerMove::BulletOrShieldType getShieldType();
 
 	virtual void move();
 	virtual void shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletType); // bulletType: 0 = metal bullet, 1 = plasma beam

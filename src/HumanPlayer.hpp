@@ -12,11 +12,12 @@
 
 class HumanPlayer : public Player {
 public:
-	HumanPlayer(int x, int y, Game* game);
+	HumanPlayer(int x, int y, Game game);
 	virtual ~HumanPlayer();
 	virtual int getXPosition();
 	virtual int getYPosition();
 	virtual int getAmmo();
+	virtual PlayerMove::BulletOrShieldType getShieldType();
 
 	virtual void move();
 	virtual void shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletType); // bulletType: 0 = metal bullet, 1 = plasma beam

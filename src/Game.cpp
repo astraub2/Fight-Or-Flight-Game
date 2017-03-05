@@ -7,7 +7,8 @@ Game::Game() : size(15) {
 	// TODO: include logic for creating the board
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			board[i][j] = Point(nullptr, i, j);
+			Player* nullPlayer = nullptr;
+			board[i][j] = Point(nullPlayer, i, j);
 		}
 	}
 
@@ -35,6 +36,6 @@ void Game::playRound() {
 	//reset shieldType, movingTo at the end
 }
 
-Point* getPoint(int x, int y) {
+Point* Game::getPoint(int x, int y) {
 	return &(board[x][y]);
 }
