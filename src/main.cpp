@@ -14,7 +14,18 @@ int main() {
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	tiletexture.setSmooth(true);
+	sf::Texture chartexture;
+	if (!chartexture.loadFromFile("char.png", sf::IntRect(0, 0, 25, 25)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture starttexture;
+	if (!starttexture.loadFromFile("NewGame.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+
+	
 	//** the format of the board, replaced with pics later?? ***
 
 	//left column
@@ -55,16 +66,20 @@ int main() {
 	moveButton.setFillColor(sf::Color::Blue);
 	moveButton.move(10, 155);
 
-	// *****board *********
-	//I will figure out a way to do this iterativly, just testing
+	sf::Sprite start;
+	start.setTexture(starttexture);
+	start.move(335, 5);
+
+	// *****board ********
 	 
 	sf::Sprite map[15][15];
 	for(int i = 0; i < 15; i++){   
 	    for(int j = 0; j < 15; j++){ 
 	    	map[i][j].setTexture(tiletexture); 
-	        map[i][j].move(sf::Vector2f(200+(i*26), 50+(j*26)));
+	        map[i][j].move(sf::Vector2f(200+(i*26), 60+(j*26)));
 	    }  
 	} 
+	
 
 	
 	while (window.isOpen()) {
@@ -77,15 +92,21 @@ int main() {
 				break;
 			// *****board logic below**********
 
-			// case sf::Event::MouseButtonPressed:
-			// 	if (event.mouseButton.button == sf::Mouse::Left) {
-			// 		if (event.mouseButton.x <= 50 && event.mouseButton.y <= 50) {
-			// 			shape.setFillColor(sf::Color::Red);
-			// 		} else if (event.mouseButton.x <= 50 && event.mouseButton.y <= 100) {
-			// 			shape.setFillColor(sf::Color::Green);
-			// 		}
-			// 	}
-			// 	break;
+			case sf::Event::MouseButtonPressed:
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					for(int i = 0; i < 15; i++){   
+				    for(int j = 0; j < 15; j++){ 
+				    	map[i][j].setTexture(tiletexture); 
+				        //map[i][j].move(sf::Vector2f(200+(i*26), 50+(j*26)));
+				    }  
+	} 
+					if (event.mouseButton.x <= 50 && event.mouseButton.y <= 50) {
+						map[5][5].setTexture(chartexture);
+					} else if (event.mouseButton.x <= 50 && event.mouseButton.y <= 100) {
+						map[10][10].setTexture(chartexture);
+					}
+				}
+				break;
 
 			default:
 				break;
@@ -94,6 +115,7 @@ int main() {
 		
 		window.clear();
 		//**right column*
+		window.draw(start);
 		window.draw(shootButton);
 		window.draw(loadButton);
 		window.draw(shieldButton);
