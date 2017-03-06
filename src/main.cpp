@@ -118,15 +118,15 @@ int main() {
 
 	sf::Sprite shootButton;
 	shootButton.setTexture(shoottexture);
-	shootButton.move(10, 55);
+	shootButton.move(10, 60);
 
 	sf::Sprite shieldButton;
 	shieldButton.setTexture(shieldtexture);
-	shieldButton.move(10, 105);
+	shieldButton.move(10, 115);
 	
 	sf::Sprite moveButton;
 	moveButton.setTexture(movetexture);
-	moveButton.move(10, 155);
+	moveButton.move(10, 175);
 
 	sf::Sprite start;
 	start.setTexture(starttexture);
@@ -194,11 +194,14 @@ int main() {
 				    //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
 	 					map[5][5].setTexture(chartexture);
+	 					i=0;
+	 					bullet.setTexture(bullets[i]);
+
 	 					//logic to restart game
 				    	//on button click, clear board and set new char's
 
-					//LOAD will add plasma later
-				    } else if (event.mouseButton.x <= 50 && event.mouseButton.y <= 50) {
+					//LOAD 
+				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
