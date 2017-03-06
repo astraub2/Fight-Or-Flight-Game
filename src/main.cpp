@@ -5,10 +5,31 @@
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
 	
-	sf::Font font;
-	if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
-		std::cout << "Error: Font not found" << std::endl;
-	}
+	// sf::Font font;
+	// if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
+	// 	std::cout << "Error: Font not found" << std::endl;
+	// }
+	sf::Texture loadtexture;
+	if (!loadtexture.loadFromFile("Load.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture shieldtexture;
+	if (!shieldtexture.loadFromFile("Shield.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture movetexture;
+	if (!movetexture.loadFromFile("Move.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture shoottexture;
+	if (!shoottexture.loadFromFile("Shoot.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+
 	sf::Texture tiletexture;
 	if (!tiletexture.loadFromFile("purple.jpeg", sf::IntRect(0, 0, 25, 25)))
 		{
@@ -35,142 +56,76 @@ int main() {
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma0texture;
-	if (!plasma0texture.loadFromFile("plasma0.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet1texture;
 	if (!bullet1texture.loadFromFile("bullet1.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma1texture;
-	if (!plasma1texture.loadFromFile("plasma1.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet2texture;
 	if (!bullet2texture.loadFromFile("bullet2.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma2texture;
-	if (!plasma2texture.loadFromFile("plasma2.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet3texture;
 	if (!bullet3texture.loadFromFile("bullet3.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma3texture;
-	if (!plasma3texture.loadFromFile("plasma3.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet4texture;
 	if (!bullet4texture.loadFromFile("bullet4.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma4texture;
-	if (!plasma4texture.loadFromFile("plasma4.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet5texture;
 	if (!bullet5texture.loadFromFile("bullet5.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma5texture;
-	if (!plasma5texture.loadFromFile("plasma5.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet6texture;
 	if (!bullet6texture.loadFromFile("bullet6.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma6texture;
-	if (!plasma6texture.loadFromFile("plasma6.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet7texture;
 	if (!bullet7texture.loadFromFile("bullet7.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma7texture;
-	if (!plasma7texture.loadFromFile("plasma7.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet8texture;
 	if (!bullet8texture.loadFromFile("bullet8.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma8texture;
-	if (!plasma8texture.loadFromFile("plasma8.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
+	
 	sf::Texture bullet9texture;
 	if (!bullet9texture.loadFromFile("bullet9.png", sf::IntRect(0, 0, 80, 50)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
-	sf::Texture plasma9texture;
-	if (!plasma9texture.loadFromFile("plasma9.png", sf::IntRect(0, 0, 80, 50)))
-		{
-		std::cout << "Error: image not found" << std::endl;
-		}
-
-
 	
-	//** the format of the board, replaced with pics later?? ***
 
-	//left column
-	sf::Text loadText;
-	sf::Text shootText;
-	sf::Text shieldText;
-	sf::Text moveText;
-	loadText.setFont(font);
-	shootText.setFont(font);
-	shieldText.setFont(font);
-	moveText.setFont(font);
-	loadText.setString("Load");
-	loadText.move(10, 5);
-	shootText.setString("Shoot");
-	shootText.move(10, 55);
-	shieldText.setString("Shield");
-	shieldText.move(10, 105);
-	moveText.setString("Move");
-	moveText.move(10, 160);
-	loadText.setCharacterSize(16);
-	shootText.setCharacterSize(16);
-	shieldText.setCharacterSize(16);
-	moveText.setCharacterSize(16);
-	
-	sf::RectangleShape loadButton(sf::Vector2f(80, 50));
-	loadButton.setFillColor(sf::Color::Red);
+	sf::Sprite loadButton;
+	loadButton.setTexture(loadtexture);
 	loadButton.move(10, 5);
 
-	sf::RectangleShape shootButton(sf::Vector2f(80, 50));
-	shootButton.setFillColor(sf::Color::Blue);
+	sf::Sprite shootButton;
+	shootButton.setTexture(shoottexture);
 	shootButton.move(10, 55);
 
-	sf::RectangleShape shieldButton(sf::Vector2f(80, 50));
-	shieldButton.setFillColor(sf::Color::Red);
+	sf::Sprite shieldButton;
+	shieldButton.setTexture(shieldtexture);
 	shieldButton.move(10, 105);
 	
-	sf::RectangleShape moveButton(sf::Vector2f(80, 50));
-	moveButton.setFillColor(sf::Color::Blue);
+	sf::Sprite moveButton;
+	moveButton.setTexture(movetexture);
 	moveButton.move(10, 155);
 
 	sf::Sprite start;
@@ -185,9 +140,9 @@ int main() {
 	bullet.setTexture(bullet0texture);
 	bullet.move(5, 300);
 
-	sf::Sprite plasma;
-	plasma.setTexture(plasma0texture);
-	plasma.move(5, 400);
+	// sf::Sprite plasma;
+	// plasma.setTexture(plasma0texture);
+	// plasma.move(5, 400);
 
 
 
@@ -264,7 +219,7 @@ int main() {
 		
 		window.clear();
 		//**right column*
-		window.draw(plasma);
+		
 		window.draw(bullet);
 		window.draw(died);
 		window.draw(start);
@@ -273,11 +228,7 @@ int main() {
 		window.draw(shieldButton);
 		window.draw(moveButton);
 
-		window.draw(loadText);
-		window.draw(shootText);
-		window.draw(shieldText);
-		window.draw(moveText);
-
+		
 		//**board**
 		for(int i = 0; i < 15; i++){   
 	    for(int j = 0; j < 15; j++){  
