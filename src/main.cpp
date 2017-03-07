@@ -9,6 +9,11 @@ int main() {
 	// if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
 	// 	std::cout << "Error: Font not found" << std::endl;
 	// }
+	sf::Texture movetabletexture;
+	if (!movetabletexture.loadFromFile("MoveTable.png", sf::IntRect(0, 0, 120, 120)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
 	sf::Texture movetotexture;
 	if (!movetotexture.loadFromFile("moveto.png", sf::IntRect(0, 0, 120, 50)))
 		{
@@ -145,6 +150,10 @@ int main() {
 	bullet.setTexture(bullet0texture);
 	bullet.move(5, 400);
 
+	sf::Sprite movetable;
+	//movetable.setTexture();
+	movetable.move(5, 250);
+
 	// sf::Sprite plasma;
 	// plasma.setTexture(plasma0texture);
 	// plasma.move(5, 400);
@@ -194,7 +203,9 @@ int main() {
 				    for(int j = 0; j < 15; j++){ 
 				    	map[i][j].setTexture(tiletexture); 
 				    }
+				    //movetable.setTexture();
 				}
+					//now draw all char on board
 				
 				    //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
@@ -219,19 +230,29 @@ int main() {
 					}
 					// //SHOOT PLASMA
 					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					//playermovetype(plasmashoot)
+					//run board logic for other char
+					//update bullet graphic with call to playerbullets
 					// }
 
 
 					// //SHOOT BULLET
 					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					//playermovetype(shootbullet)
+					//run board logic for other char
+					//update bullet graphic with call to playerbullets
 					// }
 
 					// //SHIELD PLASMA
 					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					//playermovetype(plasmashield)
+					//run board logic for other char
 					// }
 
 					// //SHIELD BULLET
 					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					//playermovetype(bulletshield)
+					//run board logic for other char
 
 					// }
 
@@ -240,12 +261,16 @@ int main() {
 						//call to get player corrdinates returns x,y
 						int xcoord=5;
 						int ycoord=5;
+						//below code is logic to show avaible moves on board
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
 						}
+						//logic for move arrows
+						movetable.setTexture(movetabletexture);
+
 
 					}
 				}
@@ -258,7 +283,7 @@ int main() {
 		
 		window.clear();
 		//**right column*
-		
+		window.draw(movetable);
 		window.draw(bullet);
 		window.draw(died);
 		window.draw(start);
