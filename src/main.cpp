@@ -9,6 +9,11 @@ int main() {
 	// if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
 	// 	std::cout << "Error: Font not found" << std::endl;
 	// }
+	sf::Texture movetotexture;
+	if (!movetotexture.loadFromFile("moveto.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
 	sf::Texture loadtexture;
 	if (!loadtexture.loadFromFile("Load.png", sf::IntRect(0, 0, 120, 50)))
 		{
@@ -138,7 +143,7 @@ int main() {
 
 	sf::Sprite bullet;
 	bullet.setTexture(bullet0texture);
-	bullet.move(5, 300);
+	bullet.move(5, 400);
 
 	// sf::Sprite plasma;
 	// plasma.setTexture(plasma0texture);
@@ -211,6 +216,37 @@ int main() {
 							i=9;
 						bullet.setTexture(bullets[i]);
 						//run game simulations
+					}
+					// //SHOOT PLASMA
+					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					// }
+
+
+					// //SHOOT BULLET
+					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					// }
+
+					// //SHIELD PLASMA
+					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					// }
+
+					// //SHIELD BULLET
+					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+
+					// }
+
+					//MOVE
+					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
+						//call to get player corrdinates returns x,y
+						int xcoord=5;
+						int ycoord=5;
+						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						for(int j=0; j<8; j++){
+
+							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
+						}
+
 					}
 				}
 				break;
