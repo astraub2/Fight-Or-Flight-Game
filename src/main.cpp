@@ -14,6 +14,11 @@ int main() {
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
+	sf::Texture movetablecleartexture;
+	if (!movetablecleartexture.loadFromFile("MoveTableClear.png", sf::IntRect(0, 0, 120, 120)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
 	sf::Texture movetotexture;
 	if (!movetotexture.loadFromFile("moveto.png", sf::IntRect(0, 0, 120, 50)))
 		{
@@ -203,7 +208,8 @@ int main() {
 				    for(int j = 0; j < 15; j++){ 
 				    	map[i][j].setTexture(tiletexture); 
 				    }
-				    //movetable.setTexture();
+				    //clear the move table if present
+				    movetable.setTexture(movetablecleartexture);
 				}
 					//now draw all char on board
 				
@@ -262,17 +268,46 @@ int main() {
 						int xcoord=5;
 						int ycoord=5;
 						//below code is logic to show avaible moves on board
+						//need to find a way to not draw on bad move
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
 						}
+						//redraw characters here?
 						//logic for move arrows
 						movetable.setTexture(movetabletexture);
+						//TODO make buttons  out of movetable template
+						//5,250 
+						//LEFT UP
+						if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
+						map[5][5].setTexture(chartexture);
+						}
+						//UP
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
+						map[6][5].setTexture(chartexture);
+						}
+						//Right Up
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
+						map[7][5].setTexture(chartexture);
+						}
+				
+						
 
 
 					}
+					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
+						map[5][5].setTexture(chartexture);
+						}
+						//UP
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
+						map[6][5].setTexture(chartexture);
+						}
+						//Right Up
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
+						map[7][5].setTexture(chartexture);
+						}
 				}
 				break;
 
