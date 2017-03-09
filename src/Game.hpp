@@ -9,6 +9,7 @@
 #define GAME_HPP_
 
 #include "Player.hpp"
+#include "PlayerMove.hpp"
 #include "Point.hpp"
 #include <vector>
 
@@ -17,7 +18,7 @@ public:
 	Game();
 	~Game();
 	int getSize();
-	void playRound();
+	void playRound(PlayerMove humanPlayerMove);
 	Point* getPoint(int x, int y);
 
 private:

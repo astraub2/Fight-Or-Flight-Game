@@ -25,7 +25,7 @@ int Game::getSize() {
 	return this->size;
 }
 
-void Game::playRound() {
+void Game::playRound(PlayerMove humanPlayerMove) {
 	//TODO:
 	//loop through player list, calling playMove() on each one
 	//shove results into a vector of PlayerMoves

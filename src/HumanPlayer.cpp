@@ -3,7 +3,7 @@
 
 HumanPlayer::HumanPlayer(int x, int y, Game game) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), game(game),
 movingTo(nullptr), markedForDeath(false) {
-
+	//TODO: Set point's player pointer to this instance
 }
 
 HumanPlayer::~HumanPlayer() {
@@ -91,7 +91,6 @@ void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 	bool stillGoing = true;
 
 	//TODO: Figure out what to do if you don't have enough ammo. Reload? Explode? Explode.
-
 	
 	if (bulletOrShieldType == PlayerMove::METAL) {
 		if (ammo >= 1) {
@@ -111,7 +110,7 @@ void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 	while ((currentX >= 0 || currentX < game.getSize() || currentY >= 0 || currentY < game.getSize()) && stillGoing) { // while we're still looking at a point on the board
 		currentX += xOffset;
 		currentY += yOffset; //move the pointer to the next point
-		Player* pointPlayer = (*game.getPoint(currentX, currentY)).getPlayer();
+		Player* pointPlayer = *(game.getPoint(currentX, currentY)).getPlayer();
 		if (pointPlayer != nullptr) { // if there's a player on the point we're looking at
 			if ((*pointPlayer).getShieldType() != bulletOrShieldType) {
 				(*pointPlayer).setMarkedForDeath(true);
