@@ -227,6 +227,10 @@ int main() {
 	 					canmove=false;
 
 	 					//logic to restart game
+	 					//new Game object
+	 					//call playerlist game
+	 					//loop through playerlist and draw them
+
 				    	//on button click, clear board and set new char's
 
 					//LOAD 
