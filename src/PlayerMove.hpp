@@ -29,6 +29,8 @@ public:
 	BulletOrShieldType getBulletOrShieldType();
 	int getXOffset();
 	int getYOffset();
+	Player* getMovingPlayer();
+	
 	void setPlayerMove(PlayerMoveType moveType);
 	void setBulletOrShieldType(BulletOrShieldType type);
 	void setXOffset(int newOffset);

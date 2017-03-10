@@ -26,6 +26,10 @@ int PlayerMove::getYOffset() {
 	return this->yOffset;
 }
 
+Player* PlayerMove::getMovingPlayer() {
+	return this->movingPlayer;
+}
+
 //Setters -- all the setters use a different argument name than the local variable name because
 //originally I thought it'd make it easier.
 

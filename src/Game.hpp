@@ -20,11 +20,13 @@ public:
 	int getSize();
 	void playRound(PlayerMove humanPlayerMove);
 	Point* getPoint(int x, int y);
+	std::vector<Player>* getPlayerList();
 
 private:
 	std::vector< std::vector<Point> > board;
 	std::vector<Player> playerList;
 	int size;
+	int numPlayers;
 };
 
 
