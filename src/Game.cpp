@@ -15,6 +15,7 @@ Game::Game() : size(15) {
 	// TODO: include logic for creating the player list
 	// requires having some players created
 	// random placement
+	// Human player must always be first in this list
 }
 
 Game::~Game() {
