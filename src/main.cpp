@@ -175,6 +175,7 @@ int main() {
 	        map[i][j].move(sf::Vector2f(200+(i*26), 60+(j*26)));
 	    }  
 	} 
+	//Important board info, leave alone
 	sf::Texture bullets[10];
 	bullets[0]=bullet0texture;
 	bullets[1]=bullet1texture;
@@ -189,6 +190,7 @@ int main() {
 	int i=0;
 	bool canmove=false;
 	
+	//actual window interactions
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -208,6 +210,9 @@ int main() {
 				    for(int j = 0; j < 15; j++){ 
 				    	map[i][j].setTexture(tiletexture); 
 				    }
+				    //TODO redraw characters
+
+
 				    //clear the move table if present
 				    movetable.setTexture(movetablecleartexture);
 
@@ -277,7 +282,7 @@ int main() {
 
 							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
 						}
-						//redraw characters here?
+						//**redraw characters here**
 
 						//logic for move arrows
 						movetable.setTexture(movetabletexture);
@@ -285,7 +290,7 @@ int main() {
 
 						
 					}
-					//left UP
+					//Left UP
 					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
 						if (canmove==true)
 							map[4][5].setTexture(chartexture);
@@ -342,10 +347,11 @@ int main() {
 		}
 		
 		window.clear();
+
 		//**right column*
 		window.draw(movetable);
 		window.draw(bullet);
-		window.draw(died);
+		//window.draw(died);
 		window.draw(start);
 		window.draw(shootButton);
 		window.draw(loadButton);
