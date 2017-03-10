@@ -187,7 +187,7 @@ int main() {
 	bullets[8]=bullet8texture;
 	bullets[9]=bullet9texture;
 	int i=0;
-
+	bool canmove=false;
 	
 	while (window.isOpen()) {
 		sf::Event event;
@@ -210,6 +210,7 @@ int main() {
 				    }
 				    //clear the move table if present
 				    movetable.setTexture(movetablecleartexture);
+
 				}
 					//now draw all char on board
 				
@@ -218,6 +219,7 @@ int main() {
 	 					map[5][5].setTexture(chartexture);
 	 					i=0;
 	 					bullet.setTexture(bullets[i]);
+	 					canmove=false;
 
 	 					//logic to restart game
 				    	//on button click, clear board and set new char's
@@ -266,7 +268,7 @@ int main() {
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						//call to get player corrdinates returns x,y
 						int xcoord=5;
-						int ycoord=5;
+						int ycoord=6;
 						//below code is logic to show avaible moves on board
 						//need to find a way to not draw on bad move
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
@@ -276,37 +278,60 @@ int main() {
 							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw characters here?
+
 						//logic for move arrows
 						movetable.setTexture(movetabletexture);
-						//TODO make buttons  out of movetable template
-						//5,250 
-						//LEFT UP
-						if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
-						map[5][5].setTexture(chartexture);
-						}
-						//UP
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
-						map[6][5].setTexture(chartexture);
-						}
-						//Right Up
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-						map[7][5].setTexture(chartexture);
-						}
-				
+						canmove=true;
+
 						
-
-
 					}
+					//left UP
 					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
-						map[5][5].setTexture(chartexture);
+						if (canmove==true)
+							map[4][5].setTexture(chartexture);
+						canmove=false;
 						}
 						//UP
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
-						map[6][5].setTexture(chartexture);
+						if (canmove==true)
+							map[5][5].setTexture(chartexture);
+						canmove=false;
 						}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-						map[7][5].setTexture(chartexture);
+						if (canmove==true)	
+							map[6][5].setTexture(chartexture);
+						canmove=false;
+						}
+						//LEFT 
+						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
+						if (canmove==true)
+							map[4][6].setTexture(chartexture);
+						canmove=false;
+						}
+						//Right
+						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
+						if (canmove==true)		
+							map[6][6].setTexture(chartexture);
+						canmove=false;
+						}
+						//LEFT Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
+						if (canmove==true)	
+							map[4][7].setTexture(chartexture);
+						canmove=false;
+						}
+						//Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
+						if (canmove==true)
+							map[5][7].setTexture(chartexture);
+						canmove=false;
+						}
+						//Right Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
+						if (canmove==true)
+							map[6][7].setTexture(chartexture);
+						canmove=false;
 						}
 				}
 				break;
