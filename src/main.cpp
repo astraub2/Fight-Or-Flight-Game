@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
-#include "Game.cpp"
+#include "Game.hpp"
+
 #include "Player.hpp"
 #include <vector>
 #include "PlayerMove.hpp"
@@ -351,15 +352,19 @@ int main() {
 					}
 					//Left UP
 					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
-						if (canmove==true)
+						if (canmove==true){
 							map[4][5].setTexture(chartexture);
+						
 						canmove=false;
+					}
 						}
 						//UP
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
-						if (canmove==true)
+						if (canmove==true){
 							map[4][5].setTexture(chartexture);
+						
 						canmove=false;
+					}
 						}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
@@ -466,7 +471,7 @@ int main() {
 				}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-					}
+					
 						if (canshoot==true){
 							if(shootplasma==true){
 								shootplasma=false;
