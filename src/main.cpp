@@ -187,7 +187,7 @@ int main() {
 	bullets[7]=bullet7texture;
 	bullets[8]=bullet8texture;
 	bullets[9]=bullet9texture;
-	int i=0;
+	int numBullets=0;
 	bool canmove=false;
 	
 	//actual window interactions
@@ -232,13 +232,13 @@ int main() {
 				    //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
 	 					map[5][5].setTexture(chartexture);
-	 					i=0;
+	 					numBullets=0;
 	 					bullet.setTexture(bullets[i]);
 	 					canmove=false;
 	 					Game game;
 	 					std::vector<Player>* players=game.getPlayerList();
 	 					numberOfPlayers=players.size();
-	 					for(int i=0; i<numberOfPlayers; i+){
+	 					for(int i=0; i<numberOfPlayers; i++){
 	 						thePlayer=players[i];
 	 						//for each player we need coordinates
 	 						//x=thePlayer.getx();
