@@ -1,5 +1,4 @@
-#include "PlayerMove.hpp"
-#include "Player.hpp"
+#include "Game.hpp"
 
 //Constructor and Destructor
 

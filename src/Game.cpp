@@ -1,7 +1,5 @@
 #include "Game.hpp"
-#include "Player.hpp"
 #include <vector>
-#include "PlayerMove.hpp"
 
 Game::Game() : size(15) {
 	// TODO: include logic for creating the board

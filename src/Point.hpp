@@ -27,4 +27,4 @@ private:
 	int y;
 };
 
- #endif /* POINT_HPP_ */
+#endif /* POINT_HPP_ */

@@ -1,4 +1,4 @@
-#include "Point.hpp"
+#include "Game.hpp"
 
 Point::Point(Player* player, int x, int y) : player(player), x(x), y(y) {
 

@@ -2,10 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Game.hpp"
-
-#include "Player.hpp"
 #include <vector>
-#include "PlayerMove.hpp"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
