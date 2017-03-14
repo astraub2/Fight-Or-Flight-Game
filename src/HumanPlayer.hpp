@@ -28,7 +28,7 @@ public:
 
 	virtual void setMarkedForDeath(bool mark);
 
-	virtual PlayerMove playMove();
+	virtual void playMove(PlayerMove humanPlayerMove);
 
 	virtual Point* getMovingTo();
 

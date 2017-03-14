@@ -129,7 +129,9 @@ void HumanPlayer::shield(PlayerMove::BulletOrShieldType shieldType) {
 }
 
 void HumanPlayer::reload() {
-	ammo += 1;
+	if ammo < 9 {
+		ammo += 1;
+	}
 }
 
 void HumanPlayer::resetShieldType() {
@@ -140,6 +142,14 @@ void HumanPlayer::setMarkedForDeath(bool mark) {
 	HumanPlayer::markedForDeath = mark;
 }
 
-PlayerMove HumanPlayer::playMove() {
+void HumanPlayer::playMove(PlayerMove humanPlayerMove) {
 	//TODO O_O
+	int xOffset = humanPlayerMove.getXOffset();
+	int yOffset = humanPlayerMove.getYOffset();
+	if (x + xOffset > game.getSize() || x + xOffset < 0 || y + yOffset > game.getSize() || y + yOffset < 0) {
+		Point* setMovingTo = game.getPoint(x, y);
+	} else {
+		Point* setMovingTo = game.getPoint(x + xOffset, y + yOffset);
+	}
+	movingTo = setMovingTo;
 }

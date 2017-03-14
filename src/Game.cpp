@@ -34,6 +34,7 @@ void Game::playRound(PlayerMove humanPlayerMove) {
 	//TODO:
 	//loop through player list, calling playMove() on each one
 	std::vector<PlayerMove> playerMoves;
+	playerList[0].playMove(humanPlayerMove)
 	playerMoves.push_back(humanPlayerMove);
 	for (int i = 1; i < numPlayers; i++) {
 		playerMoves.push_back(playerList[i].playMove());
