@@ -1,8 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
-#include "Game.hpp"
+//<<<<<<< HEAD
+// #include "Game.hpp"
+
+// #include "Player.hpp"
+// #include <vector>
+// #include "PlayerMove.hpp"
+//=======
+//#include "Game.hpp"
 #include <vector>
+
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
@@ -212,16 +220,16 @@ int main() {
 				    	map[i][j].setTexture(tiletexture); 
 				    }
 				    //TODO redraw characters
-				    std::vector<Player>* players=game.getPlayerList();
- 					numberOfPlayers=players.size();
- 					for(int i=0; i<numberOfPlayers; i++){
- 						thePlayer=players[i];
- 						//for each player we need coordinates
- 						int x=thePlayer.getXPosition();
-	 					int y=thePlayer.getYPosition();
-	 					//map(x,y).settexture(thePlayer.playerTypeImage);
+				  //   std::vector<Player>* players=game.getPlayerList();
+ 					// numberOfPlayers=players.size();
+ 					// for(int i=0; i<numberOfPlayers; i++){
+ 					// 	thePlayer=players[i];
+ 					// 	//for each player we need coordinates
+ 					// 	int x=thePlayer.getXPosition();
+	 				// 	int y=thePlayer.getYPosition();
+	 				// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
- 					}
+ 					// }
 
 
 				    //clear the move table if present
@@ -240,40 +248,43 @@ int main() {
 						canshoot=false;
 						shootplasma=false;
 						shootbullet=false;
-	 					Game game;
-	 					std::vector<Player> players = *(game.getPlayerList());
-	 					numberOfPlayers=players.size();
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						thePlayer=players[i];
-	 						//for each player we need coordinates
-	 						int x=thePlayer.getXPosition();
-	 						int y=thePlayer.getYPosition();
-	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+	 					//Game game;
+	 					// std::vector<Player> players = *(game.getPlayerList());
+	 					// numberOfPlayers=players.size();
+	 					// for(int i=0; i<numberOfPlayers; i++){
+	 					// 	thePlayer=players[i];
+	 					// 	//for each player we need coordinates
+	 					// 	int x=thePlayer.getXPosition();
+	 					// 	int y=thePlayer.getYPosition();
+	 					// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
-	 					}
+	 					// }
 
 
 	 					
 
 					//LOAD 
-				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50 && event.mouseButton.x >= 5 && event.mouseButton.y >= 0) {
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
-						// if (i<9)
-						// 	i+=1;
-						// else
-						// 	i=9;
+						if (numBullets<9)
+							numBullets+=1;
+						else
+							numBullets=9;
 						//playerMove=HumanPlayer.reload()
-						PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-						game.playRound(playerMove);
-						bullet.setTexture(bullets[players[0].getAmmo()]);
+						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						// game.playRound(playerMove);
+						bullet.setTexture(bullets[numBullets]);
 					}
 					// //SHOOT PLASMA
-					 else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
+					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
 					 	//find player x and y first
-					 	int x=players[0].getXPosition();
-	 					int y=players[0].getYPosition();
+					 	map[10][10].setTexture(chartexture);
+					 	int x=6;
+					 	int y=6;
+					 	// int x=players[0].getXPosition();
+	 					// int y=players[0].getYPosition();
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
@@ -281,214 +292,180 @@ int main() {
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						numberOfPlayers=players.size();
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						thePlayer=players[i];
-	 						//for each player we need coordinates
-	 						int x=thePlayer.getXPosition();
-	 						int y=thePlayer.getYPosition();
-	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+						// numberOfPlayers=players.size();
+	 				// 	for(int i=0; i<numberOfPlayers; i++){
+	 				// 		thePlayer=players[i];
+	 				// 		//for each player we need coordinates
+	 				// 		int x=thePlayer.getXPosition();
+	 				// 		int y=thePlayer.getYPosition();
+	 				// 		//map(x,y).settexture(thePlayer.playerTypeImage);
 
-	 					}
+	 				// 	}
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
+						canshoot=true;
 						shootplasma=true;
 					 }
 
 
 					//SHOOT BULLET
-					 else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
-					 	//find player x and y first
-					int x=players[0].getXPosition();
-	 					int y=players[0].getYPosition();
-					int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 100 && event.mouseButton.x >= 75 && event.mouseButton.y >= 50) {
+							 	//find player x and y first
+					// int x=players[0].getXPosition();
+	 			// 		int y=players[0].getYPosition();
+					 	map[10][5].setTexture(chartexture);
+					 	int x=6;
+					 	int y=6;
+						int xvalues[9]=
+						{-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						numberOfPlayers=players.size();
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						thePlayer=players[i];
-	 						//for each player we need coordinates
-	 						int x=thePlayer.getXPosition();
-	 						int y=thePlayer.getYPosition();
-	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+						// numberOfPlayers=players.size();
+	 				// 	for(int i=0; i<numberOfPlayers; i++){
+	 				// 		thePlayer=players[i];
+	 				// 		//for each player we need coordinates
+	 				// 		int x=thePlayer.getXPosition();
+	 				// 		int y=thePlayer.getYPosition();
+	 				// 		//map(x,y).settexture(thePlayer.playerTypeImage);
 
-	 					}
+	 				// 	}
 	 					//dropdown
+	 					movetable.setTexture(movetabletexture);
+	 					canshoot=true;
 						shootbullet=true;
 						 }
 
 
 					// //SHIELD PLASMA
-					else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-						PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-						//run board logic for other char
+					else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 150 && event.mouseButton.x >= 5 && event.mouseButton.y >= 100) {
+						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						//map[0][0].setTexture(chartexture);
+						// game.playRound(playerMove);
 					 }
 
 					// //SHIELD BULLET
-					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						
+					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
+						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						// game.playRound(playerMove);
+					 	//map[0][1].setTexture(chartexture);
 						 }
 
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						//call to get player corrdinates returns x,y
-						int x=players[0].getXPosition();
-	 					int y=players[0].getYPosition();
+						int x=6;
+					 	int y=6;
+						// int x=players[0].getXPosition();
+	 				// 	int y=players[0].getYPosition();
 						//below code is logic to show avaible moves on board
 						//need to find a way to not draw on bad move
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
-							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
+							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						numberOfPlayers=players.size();
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						thePlayer=players[i];
-	 						//for each player we need coordinates
-	 						int x=thePlayer.getXPosition();
-	 						int y=thePlayer.getYPosition();
-	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+						//numberOfPlayers=players.size();
+	 					// for(int i=0; i<numberOfPlayers; i++){
+	 					// 	thePlayer=players[i];
+	 					// 	//for each player we need coordinates
+	 					// 	// int x=thePlayer.getXPosition();
+	 					// 	// int y=thePlayer.getYPosition();
+	 					// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
-	 					}
+	 					// }
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						canmove=true;
 
 						
 					}
-					//Left UP
+					//************
+					//LOGIC FOR MOVE AND SHOOT PLASMA/BULLET
+					//**********************
+					//Left UP 
 					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
 						if (canmove==true){
-							map[4][5].setTexture(chartexture);
+							//offset -1,-1
+							map[5][5].setTexture(chartexture);
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
 						
 						canmove=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									//offset -1,-1
+									map[5][5].setTexture(chartexture);
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									//offset -1,-1
+									map[5][5].setTexture(chartexture);
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 						}
 						//UP
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
+						
 						if (canmove==true){
-							map[4][5].setTexture(chartexture);
+							map[6][5].setTexture(chartexture);
+							//offset 0,-1
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
 						
 						canmove=false;
 					}
-						}
-						//Right Up
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-						}
-						//LEFT 
-						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-						}
-						//Right
-						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//LEFT Down
-						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//Down
-						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//Right Down
-						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//Left UP
-					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//UP
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//Right Up
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-						if (canmove==true){
-							map[4][5].setTexture(chartexture);
-						
-						canmove=false;
-						}
-				}
-						//*****************
-						//Shoot logic
-						//*****************
-						//Left UP
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
-						if (canshoot==true){
+						else if (canshoot==true){
+							map[6][5].setTexture(chartexture);
+
 							if(shootplasma==true){
+								//offset 0,-1
+								map[6][5].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset 0,-1
+								map[6][5].setTexture(chartexture);
 								shootbullet=false;
 							}
 
 							
 						canshoot=false;
 					}
-				}
-						//UP
-						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
-						if (canshoot==true){
-							if(shootplasma==true){
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
-					}
-				}
+						}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-					
-						if (canshoot==true){
+						if (canmove==true){
+							map[7][5].setTexture(chartexture);
+							//offset 1,-1
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset 1,-1
+								map[7][5].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset 1,-1
+								map[7][5].setTexture(chartexture);
 								shootbullet=false;
 							}
 
@@ -498,11 +475,23 @@ int main() {
 						}
 						//LEFT 
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
-						if (canshoot==true){
+						if (canmove==true){
+							map[5][6].setTexture(chartexture);
+							//offset -1,0
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset -1,0
+								map[5][6].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset -1,0
+								map[5][6].setTexture(chartexture);
 								shootbullet=false;
 							}
 
@@ -512,60 +501,113 @@ int main() {
 						}
 						//Right
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
-						if (canshoot==true){
+						if (canmove==true){
+							map[7][6].setTexture(chartexture);
+							//offset 1,0
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset 0,1
+								map[7][6].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset 0,1
+								map[7][6].setTexture(chartexture);
 								shootbullet=false;
 							}
 
 							
 						canshoot=false;
 					}
-						}
+				}
 						//LEFT Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
-						if (canshoot==true){
+						if (canmove==true){
+							map[5][7].setTexture(chartexture);
+							//offset -1,1
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset -1,1
+								map[5][7].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset -1,1
+								map[5][7].setTexture(chartexture);
 								shootbullet=false;
 							}
 
 							
 						canshoot=false;
 					}
-						}
+				}
 						//Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
-						if (canshoot==true){
+						if (canmove==true){
+							map[6][7].setTexture(chartexture);
+							//offset 0,1
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset 0,1
+								map[6][7].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset 0,1
+								map[6][7].setTexture(chartexture);
 								shootbullet=false;
 							}
 
 							
 						canshoot=false;
 					}
-						}
+				}
 						//Right Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
-						if (canshoot==true){
+						//move Logic
+						if (canmove==true){
+							map[7][7].setTexture(chartexture);
+							//offset 1,1
+							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+							// game.playRound(playerMove);
+						
+						canmove=false;
+						}
+						//shoot logic
+						else if (canshoot==true){
 							if(shootplasma==true){
+								//offset 1,1
+								map[7][7].setTexture(chartexture);
 								shootplasma=false;
 							}
 							else if(shootbullet==true){
+								//offset 1,1
+								map[7][7].setTexture(chartexture);
 								shootbullet=false;
 							}
 
 							
 						canshoot=false;
 					}
-						}
+				}
+						
+						
+						
 				}
 				break;
 
