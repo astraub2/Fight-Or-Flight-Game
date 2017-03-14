@@ -2,7 +2,7 @@ CC = /usr/bin/g++-4.9
 SFML_LIB = -lsfml-graphics -lsfml-window -lsfml-system
 SFML_PATH = ../SFML-2.4.2
 CXX = /usr/bin/g++-4.9 -std=c++11
-OBJECTS = PlayerMove.o HumanPlayer.o Game.o main.o
+OBJECTS =  main.o
 
 all: main
 

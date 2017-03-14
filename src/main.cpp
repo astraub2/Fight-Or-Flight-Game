@@ -24,6 +24,16 @@ int main() {
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
+	sf::Texture welcomemessagetexture;
+	if (!welcomemessagetexture.loadFromFile("Welcome.png", sf::IntRect(0, 0, 120, 120)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture welcomemessagecleartexture;
+	if (!welcomemessagecleartexture.loadFromFile("WelcomeClear.png", sf::IntRect(0, 0, 120, 120)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
 	sf::Texture movetotexture;
 	if (!movetotexture.loadFromFile("moveto.png", sf::IntRect(0, 0, 120, 50)))
 		{
@@ -165,6 +175,10 @@ int main() {
 	sf::Sprite died;
 	//died.setTexture(diedtexture);
 	died.move(650, 5);
+	sf::Sprite welcome;
+	//died.setTexture(diedtexture);
+	welcome.move(650, 100);
+
 
 	sf::Sprite bullet;
 	bullet.setTexture(bullet0texture);
@@ -210,8 +224,8 @@ int main() {
 	bool shootplasma=false;
 	bool shootbullet=false;
 	bool youDied=true;
-	//maybe initailize a game here, then reset everything with a call to new game
-
+	welcome.setTexture(welcomemessagetexture);
+	
 	
 	//actual window interactions
 	while (window.isOpen()) {
@@ -244,14 +258,18 @@ int main() {
 	 				// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
  					// }
+
+
  					//TODO: If player is now dead(not in playerList), display YOU DIED
  					//youDied=true;
  					//died.setTexture(diedtexture);
+ 					//welcome.setTexture(welcomemessagetexture);
 
 
 
 				    //clear the move table if present
 				    movetable.setTexture(movetablecleartexture);
+				    
 				}
 
 				}
@@ -268,6 +286,8 @@ int main() {
 						shootplasma=false;
 						shootbullet=false;
 						youDied=false;
+						welcome.setTexture(welcomemessagecleartexture);
+
 
 	 					//Game game;
 	 					// std::vector<Player> players = *(game.getPlayerList());
@@ -653,6 +673,7 @@ int main() {
 		window.clear();
 
 		//**right column*
+		window.draw(welcome);
 		window.draw(movetable);
 		window.draw(bullet);
 		window.draw(died);
