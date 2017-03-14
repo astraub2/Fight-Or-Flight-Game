@@ -233,16 +233,16 @@ int main() {
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
 	 					map[5][5].setTexture(chartexture);
 	 					numBullets=0;
-	 					bullet.setTexture(bullets[i]);
+	 					bullet.setTexture(bullets[numBullets]);
 	 					canmove=false;
 	 					Game game;
-	 					std::vector<Player>* players=game.getPlayerList();
+	 					std::vector<Player> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
 	 					for(int i=0; i<numberOfPlayers; i++){
 	 						thePlayer=players[i];
 	 						//for each player we need coordinates
-	 						//x=thePlayer.getx();
-	 						//y=thePlayer.gety();
+	 						int x=thePlayer.getXPosition();
+	 						int y=thePlayer.getYPosition();
 	 						//map(x,y).settexture(playerTypeImage);
 
 	 					}
@@ -259,9 +259,10 @@ int main() {
 						// 	i+=1;
 						// else
 						// 	i=9;
-						playerMove=HumanPlayer.reload()
-						game.playround(playerMove);
-						//bullet.setTexture(bullets[i]);
+						//playerMove=HumanPlayer.reload()
+						PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						game.playRound(playerMove);
+						//bullet.setTexture(bullets[players[0].getAmmo()]);
 						//run game simulations
 					}
 					// //SHOOT PLASMA

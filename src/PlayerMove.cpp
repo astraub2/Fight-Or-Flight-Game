@@ -3,7 +3,7 @@
 
 //Constructor and Destructor
 
-PlayerMove::PlayerMove(PlayerMove::PlayerMoveType playerMove, PlayerMove::BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer, bool secondMove) : playerMove(playerMove),
+PlayerMove::PlayerMove(PlayerMove::PlayerMoveType playerMove, PlayerMove::BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer) : playerMove(playerMove),
 	bulletOrShieldType(bulletOrShieldType), xOffset(xOffset), yOffset(yOffset), movingPlayer(movingPlayer){}
 
 PlayerMove::~PlayerMove() {}
