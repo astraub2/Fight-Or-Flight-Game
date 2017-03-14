@@ -10,7 +10,6 @@
 //=======
 //#include "Game.hpp"
 #include <vector>
-//barf
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
@@ -58,6 +57,16 @@ int main() {
 		}
 	sf::Texture chartexture;
 	if (!chartexture.loadFromFile("char.png", sf::IntRect(0, 0, 25, 25)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture alientexture;
+	if (!alientexture.loadFromFile("alien.png", sf::IntRect(0, 0, 25, 25)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
+	sf::Texture cowboytexture;
+	if (!cowboytexture.loadFromFile("cowboy.png", sf::IntRect(0, 0, 25, 25)))
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
@@ -188,6 +197,13 @@ int main() {
 	bullets[7]=bullet7texture;
 	bullets[8]=bullet8texture;
 	bullets[9]=bullet9texture;
+
+	sf::Texture thePlayerTextures[3];
+	thePlayerTextures[0]=chartexture;
+	thePlayerTextures[1]=alientexture;
+	thePlayerTextures[2]=cowboytexture;
+
+
 	int numBullets=0;
 	bool canmove=false;
 	bool canshoot=false;
