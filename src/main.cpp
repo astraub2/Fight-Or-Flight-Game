@@ -222,7 +222,7 @@ int main() {
  						//for each player we need coordinates
  						//x=thePlayer.getx();
  						//y=thePlayer.gety();
- 						//map(x,y).settexture(playerTypeImage);
+ 						//map(x,y).settexture(thePlayer.playerTypeImage);
 
  					}
 
@@ -231,11 +231,11 @@ int main() {
 				    movetable.setTexture(movetablecleartexture);
 
 				}
-					//now draw all char on board
+					
 				
 				    //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
-	 					map[5][5].setTexture(chartexture);
+	 					//map[5][5].setTexture(chartexture);
 	 					numBullets=0;
 	 					bullet.setTexture(bullets[numBullets]);
 	 					canmove=false;
@@ -251,7 +251,7 @@ int main() {
 	 						//for each player we need coordinates
 	 						int x=thePlayer.getXPosition();
 	 						int y=thePlayer.getYPosition();
-	 						//map(x,y).settexture(playerTypeImage);
+	 						//map(x,y).settexture(thePlayer.playerTypeImage);
 
 	 					}
 
@@ -270,31 +270,40 @@ int main() {
 						//playerMove=HumanPlayer.reload()
 						PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
 						game.playRound(playerMove);
-						//bullet.setTexture(bullets[players[0].getAmmo()]);
-						//run game simulations
+						bullet.setTexture(bullets[players[0].getAmmo()]);
 					}
 					// //SHOOT PLASMA
-					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					 else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 					 	//find player x and y first
-					 	int x=thePlayer.getXPosition();
-	 					int y=thePlayer.getYPosition();
-					int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+					 	int x=players[0].getXPosition();
+	 					int y=players[0].getYPosition();
+						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
+						numberOfPlayers=players.size();
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						thePlayer=players[i];
+	 						//for each player we need coordinates
+	 						int x=thePlayer.getXPosition();
+	 						int y=thePlayer.getYPosition();
+	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+
+	 					}
+	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						shootplasma=true;
 					 }
 
 
 					//SHOOT BULLET
-					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					 else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 					 	//find player x and y first
-					int x=thePlayer.getXPosition();
-	 					int y=thePlayer.getYPosition();
+					int x=players[0].getXPosition();
+	 					int y=players[0].getYPosition();
 					int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
@@ -302,38 +311,36 @@ int main() {
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						movetable.setTexture(movetabletexture);
-						
+						numberOfPlayers=players.size();
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						thePlayer=players[i];
+	 						//for each player we need coordinates
+	 						int x=thePlayer.getXPosition();
+	 						int y=thePlayer.getYPosition();
+	 						//map(x,y).settexture(thePlayer.playerTypeImage);
+
+	 					}
+	 					//dropdown
 						shootbullet=true;
 						 }
 
 
 					// //SHIELD PLASMA
-					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					// int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-					// 	int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-					// 	for(int j=0; j<8; j++){
-
-					// 		map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
-					// 	}
-					// 	//run board logic for other char
-					//  }
+					else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+						PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						//run board logic for other char
+					 }
 
 					// //SHIELD BULLET
-					//  else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					// int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-					// 	int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-					// 	for(int j=0; j<8; j++){
-
-					// 		map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
-					// 	}
-					// 	 }
+					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
+						 }
 
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						//call to get player corrdinates returns x,y
-						int xcoord=5;
-						int ycoord=6;
+						int x=players[0].getXPosition();
+	 					int y=players[0].getYPosition();
 						//below code is logic to show avaible moves on board
 						//need to find a way to not draw on bad move
 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
@@ -342,9 +349,17 @@ int main() {
 
 							map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
 						}
-						//**redraw characters here**
+						//redraw char here
+						numberOfPlayers=players.size();
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						thePlayer=players[i];
+	 						//for each player we need coordinates
+	 						int x=thePlayer.getXPosition();
+	 						int y=thePlayer.getYPosition();
+	 						//map(x,y).settexture(thePlayer.playerTypeImage);
 
-						//logic for move arrows
+	 					}
+	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						canmove=true;
 
