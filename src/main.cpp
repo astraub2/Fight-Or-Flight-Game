@@ -220,9 +220,9 @@ int main() {
  					for(int i=0; i<numberOfPlayers; i++){
  						thePlayer=players[i];
  						//for each player we need coordinates
- 						//x=thePlayer.getx();
- 						//y=thePlayer.gety();
- 						//map(x,y).settexture(thePlayer.playerTypeImage);
+ 						int x=thePlayer.getXPosition();
+	 					int y=thePlayer.getYPosition();
+	 					//map(x,y).settexture(thePlayer.playerTypeImage);
 
  					}
 
