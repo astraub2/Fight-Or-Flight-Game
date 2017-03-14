@@ -1,14 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include "Game.cpp"
+#include "Player.hpp"
+#include <vector>
+#include "PlayerMove.hpp"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 500), "Fight or Flight");
 	
-	// sf::Font font;
-	// if (!font.loadFromFile("../fonts/Roboto-Light.ttf")) {
-	// 	std::cout << "Error: Font not found" << std::endl;
-	// }
 	sf::Texture movetabletexture;
 	if (!movetabletexture.loadFromFile("MoveTable.png", sf::IntRect(0, 0, 120, 120)))
 		{
@@ -211,6 +211,16 @@ int main() {
 				    	map[i][j].setTexture(tiletexture); 
 				    }
 				    //TODO redraw characters
+				    std::vector<Player>* players=game.getPlayerList();
+ 					numberOfPlayers=players.size();
+ 					for(int i=0; i<numberOfPlayers; i+){
+ 						thePlayer=players[i];
+ 						//for each player we need coordinates
+ 						//x=thePlayer.getx();
+ 						//y=thePlayer.gety();
+ 						//map(x,y).settexture(playerTypeImage);
+
+ 					}
 
 
 				    //clear the move table if present
@@ -225,24 +235,33 @@ int main() {
 	 					i=0;
 	 					bullet.setTexture(bullets[i]);
 	 					canmove=false;
+	 					Game game;
+	 					std::vector<Player>* players=game.getPlayerList();
+	 					numberOfPlayers=players.size();
+	 					for(int i=0; i<numberOfPlayers; i+){
+	 						thePlayer=players[i];
+	 						//for each player we need coordinates
+	 						//x=thePlayer.getx();
+	 						//y=thePlayer.gety();
+	 						//map(x,y).settexture(playerTypeImage);
 
-	 					//logic to restart game
-	 					//new Game object
-	 					//call playerlist game
-	 					//loop through playerlist and draw them
+	 					}
 
-				    	//on button click, clear board and set new char's
+
+	 					
 
 					//LOAD 
 				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
-						if (i<9)
-							i+=1;
-						else
-							i=9;
-						bullet.setTexture(bullets[i]);
+						// if (i<9)
+						// 	i+=1;
+						// else
+						// 	i=9;
+						playerMove=HumanPlayer.reload()
+						game.playround(playerMove);
+						//bullet.setTexture(bullets[i]);
 						//run game simulations
 					}
 					// //SHOOT PLASMA
