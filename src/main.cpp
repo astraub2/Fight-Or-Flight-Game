@@ -154,7 +154,7 @@ int main() {
 	start.move(335, 5);
 
 	sf::Sprite died;
-	died.setTexture(diedtexture);
+	//died.setTexture(diedtexture);
 	died.move(650, 5);
 
 	sf::Sprite bullet;
@@ -164,11 +164,6 @@ int main() {
 	sf::Sprite movetable;
 	//movetable.setTexture();
 	movetable.move(5, 250);
-
-	// sf::Sprite plasma;
-	// plasma.setTexture(plasma0texture);
-	// plasma.move(5, 400);
-
 
 
 
@@ -198,6 +193,9 @@ int main() {
 	bool canshoot=false;
 	bool shootplasma=false;
 	bool shootbullet=false;
+	bool youDied=true;
+	//maybe initailize a game here, then reset everything with a call to new game
+
 	
 	//actual window interactions
 	while (window.isOpen()) {
@@ -230,6 +228,10 @@ int main() {
 	 				// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
  					// }
+ 					//TODO: If player is now dead(not in playerList), display YOU DIED
+ 					//youDied=true;
+ 					//died.setTexture(diedtexture);
+
 
 
 				    //clear the move table if present
@@ -248,6 +250,8 @@ int main() {
 						canshoot=false;
 						shootplasma=false;
 						shootbullet=false;
+						youDied=false;
+
 	 					//Game game;
 	 					// std::vector<Player> players = *(game.getPlayerList());
 	 					// numberOfPlayers=players.size();
@@ -262,9 +266,11 @@ int main() {
 
 
 	 					
-
+					//Need BOOl here, youDied: initialize false, true when humanplayer is not in playerlist
+					//youdied wraps the rest of the button functions
 					//LOAD 
 				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50 && event.mouseButton.x >= 5 && event.mouseButton.y >= 0) {
+						if (youDied==false){
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
@@ -277,8 +283,10 @@ int main() {
 						// game.playRound(playerMove);
 						bullet.setTexture(bullets[numBullets]);
 					}
+					}
 					// //SHOOT PLASMA
 					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
+					 	if (youDied==false){
 					 	//find player x and y first
 					 	map[10][10].setTexture(chartexture);
 					 	int x=6;
@@ -306,10 +314,12 @@ int main() {
 						canshoot=true;
 						shootplasma=true;
 					 }
+					}
 
 
 					//SHOOT BULLET
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 100 && event.mouseButton.x >= 75 && event.mouseButton.y >= 50) {
+						if (youDied==false){
 							 	//find player x and y first
 					// int x=players[0].getXPosition();
 	 			// 		int y=players[0].getYPosition();
@@ -338,25 +348,31 @@ int main() {
 	 					canshoot=true;
 						shootbullet=true;
 						 }
+							 }
 
 
 					// //SHIELD PLASMA
 					else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 150 && event.mouseButton.x >= 5 && event.mouseButton.y >= 100) {
+						if (youDied==false){
 						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
 						//map[0][0].setTexture(chartexture);
 						// game.playRound(playerMove);
 					 }
+					}
 
 					// //SHIELD BULLET
 						
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
+						if (youDied==false){
 						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
 						// game.playRound(playerMove);
 					 	//map[0][1].setTexture(chartexture);
 						 }
+							}
 
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
+						if (youDied==false){
 						//call to get player corrdinates returns x,y
 						int x=6;
 					 	int y=6;
@@ -386,6 +402,7 @@ int main() {
 
 						
 					}
+				}
 					//************
 					//LOGIC FOR MOVE AND SHOOT PLASMA/BULLET
 					//**********************
@@ -621,7 +638,7 @@ int main() {
 		//**right column*
 		window.draw(movetable);
 		window.draw(bullet);
-		//window.draw(died);
+		window.draw(died);
 		window.draw(start);
 		window.draw(shootButton);
 		window.draw(loadButton);
