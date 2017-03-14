@@ -217,7 +217,7 @@ int main() {
 				    //TODO redraw characters
 				    std::vector<Player>* players=game.getPlayerList();
  					numberOfPlayers=players.size();
- 					for(int i=0; i<numberOfPlayers; i+){
+ 					for(int i=0; i<numberOfPlayers; i++){
  						thePlayer=players[i];
  						//for each player we need coordinates
  						//x=thePlayer.getx();
