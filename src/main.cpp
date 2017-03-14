@@ -227,7 +227,7 @@ int main() {
 			case sf::Event::MouseButtonPressed:
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					
-
+					if (youDied==false){
 					//clear board and redraw all remaining characters
 					for(int i = 0; i < 15; i++){   
 				    for(int j = 0; j < 15; j++){ 
@@ -252,6 +252,7 @@ int main() {
 
 				    //clear the move table if present
 				    movetable.setTexture(movetablecleartexture);
+				}
 
 				}
 					
