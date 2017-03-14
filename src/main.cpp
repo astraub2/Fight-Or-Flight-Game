@@ -189,6 +189,9 @@ int main() {
 	bullets[9]=bullet9texture;
 	int numBullets=0;
 	bool canmove=false;
+	bool canshoot=false;
+	bool shootplasma=false;
+	bool shootbullet=false;
 	
 	//actual window interactions
 	while (window.isOpen()) {
@@ -235,6 +238,10 @@ int main() {
 	 					numBullets=0;
 	 					bullet.setTexture(bullets[numBullets]);
 	 					canmove=false;
+
+						canshoot=false;
+						shootplasma=false;
+						shootbullet=false;
 	 					Game game;
 	 					std::vector<Player> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
@@ -266,32 +273,60 @@ int main() {
 						//run game simulations
 					}
 					// //SHOOT PLASMA
-					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					//playermovetype(plasmashoot)
-					//run board logic for other char
-					//update bullet graphic with call to playerbullets
-					// }
+					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					 	//find player x and y first
+					 	int x=thePlayer.getXPosition();
+	 					int y=thePlayer.getYPosition();
+					int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						for(int j=0; j<8; j++){
+
+							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						}
+						//redraw char here
+						movetable.setTexture(movetabletexture);
+						shootplasma=true;
+					 }
 
 
-					// //SHOOT BULLET
-					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					//playermovetype(shootbullet)
-					//run board logic for other char
-					//update bullet graphic with call to playerbullets
-					// }
+					//SHOOT BULLET
+					 else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					 	//find player x and y first
+					int x=thePlayer.getXPosition();
+	 					int y=thePlayer.getYPosition();
+					int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						for(int j=0; j<8; j++){
+
+							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						}
+						//redraw char here
+						movetable.setTexture(movetabletexture);
+						
+						shootbullet=true;
+						 }
+
 
 					// //SHIELD PLASMA
 					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					//playermovetype(plasmashield)
-					//run board logic for other char
-					// }
+					// int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+					// 	int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+					// 	for(int j=0; j<8; j++){
+
+					// 		map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
+					// 	}
+					// 	//run board logic for other char
+					//  }
 
 					// //SHIELD BULLET
-					// else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
-					//playermovetype(bulletshield)
-					//run board logic for other char
+					//  else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50) {
+					// int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+					// 	int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+					// 	for(int j=0; j<8; j++){
 
-					// }
+					// 		map[xcoord+(xvalues[j])][ycoord+(yvalues[j])].setTexture(movetotexture);
+					// 	}
+					// 	 }
 
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
@@ -323,44 +358,196 @@ int main() {
 						//UP
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
 						if (canmove==true)
-							map[5][5].setTexture(chartexture);
+							map[4][5].setTexture(chartexture);
 						canmove=false;
 						}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
-						if (canmove==true)	
-							map[6][5].setTexture(chartexture);
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
 						canmove=false;
+						}
 						}
 						//LEFT 
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
-						if (canmove==true)
-							map[4][6].setTexture(chartexture);
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
 						canmove=false;
+						}
 						}
 						//Right
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
-						if (canmove==true)		
-							map[6][6].setTexture(chartexture);
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
 						canmove=false;
+						}
+				}
+						//LEFT Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//Right Down
+						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//Left UP
+					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//UP
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//Right Up
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
+						if (canmove==true){
+							map[4][5].setTexture(chartexture);
+						
+						canmove=false;
+						}
+				}
+						//*****************
+						//Shoot logic
+						//*****************
+						//Left UP
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
+				}
+						//UP
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
+				}
+						//Right Up
+						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
+					}
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
+						}
+						//LEFT 
+						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
+						}
+						//Right
+						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
 						}
 						//LEFT Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
-						if (canmove==true)	
-							map[4][7].setTexture(chartexture);
-						canmove=false;
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
 						}
 						//Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
-						if (canmove==true)
-							map[5][7].setTexture(chartexture);
-						canmove=false;
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
 						}
 						//Right Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
-						if (canmove==true)
-							map[6][7].setTexture(chartexture);
-						canmove=false;
+						if (canshoot==true){
+							if(shootplasma==true){
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								shootbullet=false;
+							}
+
+							
+						canshoot=false;
+					}
 						}
 				}
 				break;
