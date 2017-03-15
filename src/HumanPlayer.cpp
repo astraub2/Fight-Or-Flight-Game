@@ -1,6 +1,6 @@
 #include "HumanPlayer.hpp"
 
-HumanPlayer::HumanPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
+HumanPlayer::HumanPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(0) {
 	printf("HumanPlayer's x = %d\n", this->x);
 	printf("HumanPlayer's y = %d\n", this->y);
 }

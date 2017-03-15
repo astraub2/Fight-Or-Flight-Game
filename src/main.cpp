@@ -281,6 +281,8 @@ int main() {
 						shootbullet=false;
 						youDied=false;
 						welcome.setTexture(welcomemessagecleartexture);
+						int thePlayerX;
+						int thePlayerY;
 
 
 	 					Game game;
@@ -290,12 +292,12 @@ int main() {
 	 						Player* thePlayer = players[i];
 	 						printf("player %d accessed\n", i + 1);
 	 					//for each player we need coordinates
-	 						int thePlayerX=thePlayer->getXPosition();
+	 						thePlayerX=thePlayer->getXPosition();
 	 						printf("player %d's x = %d\n", i + 1, thePlayerX);
-	 					 	int thePlayerY=thePlayer->getYPosition();
+	 					 	thePlayerY=thePlayer->getYPosition();
 	 						printf("player %d's y = %d\n", i + 1, thePlayerY);
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayer->playerType]);
-	 						printf("player %d texture set\n", i + 1);
+	 						printf("player %d texture set as %d\n", i + 1, thePlayer->playerType);
 
 	 					}
 

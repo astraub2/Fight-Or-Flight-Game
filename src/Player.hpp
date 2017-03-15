@@ -36,7 +36,7 @@ public:
 
 	virtual Point* getMovingTo() {}
 
-	int playerType = 0; // Defines which graphic should be used for the player. Default 0 is HumanPlayer graphic
+	int playerType; // Defines which graphic should be used for the player. Default 0 is HumanPlayer graphic
 
 private:
 	PlayerMove::BulletOrShieldType shieldType;

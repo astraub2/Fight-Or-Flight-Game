@@ -22,18 +22,18 @@ Game::Game() : size(15) {
 	// int y = rand() % size;
 	int x = 5;
 	int y = 5;
-	HumanPlayer humanPlayer = HumanPlayer(x, y);
-	playerList.push_back(&humanPlayer);
+	HumanPlayer* humanPlayer = new HumanPlayer(x, y);
+	playerList.push_back(humanPlayer);
 	printf("HumanPlayer created\n");
 	x = 10;
 	y = 10;
-	AlienPlayer alienPlayer = AlienPlayer(x, y);
-	playerList.push_back(&alienPlayer);
+	AlienPlayer* alienPlayer = new AlienPlayer(x, y);
+	playerList.push_back(alienPlayer);
 	printf("AlienPlayer created\n");
 	x = 5;
 	y = 10;
-	CowboyPlayer cowboyPlayer = CowboyPlayer(x, y);
-	playerList.push_back(&cowboyPlayer);
+	CowboyPlayer* cowboyPlayer = new CowboyPlayer(x, y);
+	playerList.push_back(cowboyPlayer);
 	printf("CowboyPlayer created\n");
 	// requires having some players created
 	// for (int i = 1; i < 5; i++) {

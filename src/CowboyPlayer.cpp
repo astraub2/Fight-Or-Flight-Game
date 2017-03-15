@@ -1,6 +1,6 @@
 #include "CowboyPlayer.hpp"
 
-CowboyPlayer::CowboyPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
+CowboyPlayer::CowboyPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(2) {
 	printf("CowboyPlayer's x = %d\n", this->x);
 	printf("CowboyPlayer's y = %d\n", this->y);
 }
