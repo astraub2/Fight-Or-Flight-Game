@@ -7,22 +7,17 @@
 
 #ifndef POINT_HPP_
 #define POINT_HPP_
-
-#include "Player.hpp"
-
+ 
 class Point {
 public:
-	Point(Player* player, int x, int y);
+	Point(int x, int y);
 	~Point();
-	Player* getPlayer();
-	void setPlayer(Player* setPlayer);
 	int getX();
 	int getY();
 	void setX(int newX);
 	void setY(int newY);
 
 private:
-	Player* player;
 	int x;
 	int y;
 };

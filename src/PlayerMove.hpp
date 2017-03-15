@@ -8,13 +8,11 @@
 #ifndef PLAYERMOVE_HPP_
 #define PLAYERMOVE_HPP_
 
-#include "Player.hpp"
-
 class PlayerMove {
 public:
 	enum BulletOrShieldType {
 		METAL,
-		PlASMA,
+		PLASMA,
 		NONE
 	};
 	enum PlayerMoveType {
@@ -23,13 +21,13 @@ public:
 		SHIELD,
 		RELOAD
 	};
-	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer);
+	PlayerMove(PlayerMoveType playerMove, BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, int movingPlayer);
 	~PlayerMove();
 	PlayerMoveType getPlayerMove();
 	BulletOrShieldType getBulletOrShieldType();
 	int getXOffset();
 	int getYOffset();
-	Player* getMovingPlayer();
+	int getMovingPlayer();
 	
 	void setPlayerMove(PlayerMoveType moveType);
 	void setBulletOrShieldType(BulletOrShieldType type);
@@ -37,12 +35,12 @@ public:
 	void setYOffset(int newOffset);
 
 private:
-	Player* movingPlayer;
+	int movingPlayer;
 	PlayerMoveType playerMove;
 	BulletOrShieldType bulletOrShieldType;
 	int xOffset;
 	int yOffset;
-};
+}; 
 
 
 

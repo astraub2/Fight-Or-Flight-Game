@@ -1,8 +1,8 @@
 CC = /usr/bin/g++-4.9 
 SFML_LIB = -lsfml-graphics -lsfml-window -lsfml-system
 SFML_PATH = ../SFML-2.4.2
-CXX = /usr/bin/g++-4.9 -std=c++11
-OBJECTS = PlayerMove.o HumanPlayer.o Game.o main.o
+CXX = $(CC) -std=c++11
+OBJECTS = PlayerMove.o Point.o Player.o HumanPlayer.o CowboyPlayer.o AlienPlayer.o Game.o main.o
 
 all: main
 
@@ -13,7 +13,7 @@ run: main
 	$(CXX) -c $< -I$(SFML_PATH)/include
 
 main: $(OBJECTS)
-	$(CXX) $< -o $@ -L$(SFML_PATH)/lib $(SFML_LIB)
+	$(CXX) $(OBJECTS) -o $@ -L$(SFML_PATH)/lib $(SFML_LIB)
 
 clean:
 	rm *.o main

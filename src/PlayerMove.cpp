@@ -1,8 +1,8 @@
-#include "Game.hpp"
+#include "PlayerMove.hpp"
 
 //Constructor and Destructor
 
-PlayerMove::PlayerMove(PlayerMove::PlayerMoveType playerMove, PlayerMove::BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, Player* movingPlayer) : playerMove(playerMove),
+PlayerMove::PlayerMove(PlayerMove::PlayerMoveType playerMove, PlayerMove::BulletOrShieldType bulletOrShieldType, int xOffset, int yOffset, int movingPlayer) : playerMove(playerMove),
 	bulletOrShieldType(bulletOrShieldType), xOffset(xOffset), yOffset(yOffset), movingPlayer(movingPlayer){}
 
 PlayerMove::~PlayerMove() {}
@@ -25,7 +25,7 @@ int PlayerMove::getYOffset() {
 	return this->yOffset;
 }
 
-Player* PlayerMove::getMovingPlayer() {
+int PlayerMove::getMovingPlayer() {
 	return this->movingPlayer;
 }
 

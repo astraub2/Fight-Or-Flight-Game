@@ -1,18 +1,10 @@
-#include "Game.hpp"
+#include "Point.hpp"
 
-Point::Point(Player* player, int x, int y) : player(player), x(x), y(y) {
+Point::Point(int x, int y) : x(x), y(y) {
 
 }
 
 Point::~Point(){}
-
-Player* Point::getPlayer() {
-	return this->player;
-}
-
-void Point::setPlayer(Player* setPlayer) {
-	player = setPlayer;
-}
 
 int Point::getX() {
 	return this->x;

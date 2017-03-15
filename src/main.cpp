@@ -1,14 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
-//<<<<<<< HEAD
-// #include "Game.hpp"
-
-// #include "Player.hpp"
-// #include <vector>
-// #include "PlayerMove.hpp"
-//=======
-//#include "Game.hpp"
+#include "Game.hpp"
 #include <vector>
 
 

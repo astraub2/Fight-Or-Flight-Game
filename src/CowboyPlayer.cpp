@@ -1,42 +1,42 @@
-#include "HumanPlayer.hpp"
+#include "CowboyPlayer.hpp"
 
-HumanPlayer::HumanPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
-
-}
-
-HumanPlayer::~HumanPlayer() {
+CowboyPlayer::CowboyPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
 
 }
 
-int HumanPlayer::getXPosition() {
+CowboyPlayer::~CowboyPlayer() {
+
+}
+
+int CowboyPlayer::getXPosition() {
 	return this->x;
 }
 
-int HumanPlayer::getYPosition() {
+int CowboyPlayer::getYPosition() {
 	return this->y;
 }
 
-void HumanPlayer::setXPosition(int newX) {
+void CowboyPlayer::setXPosition(int newX) {
 	this->x = newX;
 }
 
-void HumanPlayer::setYPosition(int newY) {
+void CowboyPlayer::setYPosition(int newY) {
 	this->y = newY;
 }
 
-int HumanPlayer::getAmmo() {
+int CowboyPlayer::getAmmo() {
 	return this->ammo;
 }
 
-Point* HumanPlayer::getMovingTo() {
+Point* CowboyPlayer::getMovingTo() {
 	return this->movingTo;
 }
 
-PlayerMove::BulletOrShieldType HumanPlayer::getShieldType() {
+PlayerMove::BulletOrShieldType CowboyPlayer::getShieldType() {
 	return this->shieldType;
 }
 
-void HumanPlayer::move(std::vector<Player>* playerListPointer, int size) {
+void CowboyPlayer::move(std::vector<Player>* playerListPointer, int size) {
 	//Move needs to: Move the player. PlayMove will set the movingTo marker.
 	//Move needs to check the point being moved to and make sure no other player is moving onto that point.
 	int movingToX = (*movingTo).getX();
@@ -59,7 +59,7 @@ void HumanPlayer::move(std::vector<Player>* playerListPointer, int size) {
 	setYPosition(movingToY);
 }
 
-void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player>* playerListPointer, int size) {
+void CowboyPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player>* playerListPointer, int size) {
 	//Shoot needs to: Check all tiles in the direction decided by (xOffset, yOffset).
 	//If a player is found, and their shield is of the wrong type for the bullet (i.e. not the same)
 		//then mark that player for death
@@ -114,43 +114,33 @@ void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 	return;
 }
 
-void HumanPlayer::shield(PlayerMove::BulletOrShieldType shieldType) {
-	HumanPlayer::shieldType = shieldType;
+void CowboyPlayer::shield(PlayerMove::BulletOrShieldType shieldType) {
+	CowboyPlayer::shieldType = shieldType;
 }
 
-void HumanPlayer::reload() {
+void CowboyPlayer::reload() {
 	if (ammo < 9) {
 		ammo += 1;
 	}
 }
 
-void HumanPlayer::resetShieldType() {
-	HumanPlayer::shieldType = PlayerMove::NONE;
+void CowboyPlayer::resetShieldType() {
+	CowboyPlayer::shieldType = PlayerMove::NONE;
 }
 
-void HumanPlayer::resetMovingTo(std::vector< std::vector<Point> >* pointListPointer) {
+void CowboyPlayer::resetMovingTo(std::vector< std::vector<Point> >* pointListPointer) {
 	movingTo = &(*pointListPointer)[x][y];
 } 
 
-void HumanPlayer::setMarkedForDeath(bool mark) {
-	HumanPlayer::markedForDeath = mark;
+void CowboyPlayer::setMarkedForDeath(bool mark) {
+	CowboyPlayer::markedForDeath = mark;
 }
 
-bool HumanPlayer::getMarkedForDeath() {
+bool CowboyPlayer::getMarkedForDeath() {
 	return this->markedForDeath;
 }
 
-PlayerMove HumanPlayer::playMove(PlayerMove humanPlayerMove, std::vector< std::vector<Point> >* pointListPointer, int size, int index) {
-	//TODO O_O
-	int xOffset = humanPlayerMove.getXOffset();
-	int yOffset = humanPlayerMove.getYOffset();
-	Point* setMovingTo;
-	if (x + xOffset > size || x + xOffset < 0 || y + yOffset > size || y + yOffset < 0) {
-		setMovingTo = &(*pointListPointer)[x][y];
-	} else {
-		setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];
-	}
-	movingTo = setMovingTo;
-
-	return humanPlayerMove;
+PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, std::vector< std::vector<Point> >* pointListPointer, int size, int index) {
+	//Temporary: this will be changed later
+	return PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, index);
 }

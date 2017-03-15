@@ -1,19 +1,19 @@
 /*
- * HumanPlayer.hpp
+ * AlienPlayer.hpp
  *
- *  Created on: Mar 2, 2017
+ *  Created on: Mar 14, 2017
  *      Author: sean
  */
 
-#ifndef HUMANPLAYER_HPP_
-#define HUMANPLAYER_HPP_
+#ifndef ALIENPLAYER_HPP_
+#define ALIENPLAYER_HPP_
 
 #include "Player.hpp"
 
-class HumanPlayer : public Player {
+class AlienPlayer : public Player {
 public:
-	HumanPlayer(int x, int y);
-	virtual ~HumanPlayer();
+	AlienPlayer(int x, int y);
+	virtual ~AlienPlayer();
 	virtual int getXPosition();
 	virtual int getYPosition();
 	virtual int getAmmo();
@@ -34,17 +34,20 @@ public:
 
 	virtual Point* getMovingTo();
 
+	int playerType = 1; // Defines which graphic should be used for the player. Default 0 is HumanPlayer graphic
+
 private:
 	PlayerMove::BulletOrShieldType shieldType;
+	//Game game;
 	virtual void setXPosition(int newX);
 	virtual void setYPosition(int newY);
 	int x;
 	int y;
 	int ammo;
-	Point* movingTo;
+	Point* movingTo; 
 	bool markedForDeath;
 };
 
 
 
-#endif /* HUMANPLAYER_HPP_ */
+#endif /* ALIENPLAYER_HPP_ */
