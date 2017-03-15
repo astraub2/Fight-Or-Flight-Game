@@ -219,6 +219,7 @@ int main() {
 	bool shootbullet=false;
 	bool youDied=true;
 	welcome.setTexture(welcomemessagetexture);
+	Game game;
 	
 	
 	//actual window interactions
@@ -241,6 +242,7 @@ int main() {
 				    for(int j = 0; j < 15; j++){ 
 				    	map[i][j].setTexture(tiletexture); 
 				    }
+				}
 				    //TODO redraw characters
 				  //   std::vector<Player>* players=game.getPlayerList();
  					// numberOfPlayers=players.size();
@@ -252,6 +254,26 @@ int main() {
 	 				// 	//map(x,y).settexture(thePlayer.playerTypeImage);
 
  					// }
+ 					std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					youDied=true;
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						
+	 						Player* thePlayer = players[i];
+	 						//printf("player %d accessed\n", i + 1);
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 					 	int thePlayerY=thePlayer->getYPosition();
+
+	 						
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						if(thePlayerType==0)
+	 							youDied=false;
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
+	 						//printf("player %d texture set as %d\n", i + 1, thePlayerType);
+
+	 					}
 
 
  					//TODO: If player is now dead(not in playerList), display YOU DIED
@@ -266,7 +288,7 @@ int main() {
 				    
 				}
 
-				}
+				
 					
 				
 				    //START NEW GAME
@@ -325,68 +347,77 @@ int main() {
 					// //SHOOT PLASMA
 					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
 					 	if (youDied==false){
-					 	//find player x and y first
-					 	map[10][10].setTexture(chartexture);
-					 	int x=6;
-					 	int y=6;
-					 	// int x=players[0].getXPosition();
-	 					// int y=players[0].getYPosition();
-						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+					 	std::vector<Player*> players = *(game.getPlayerList());
+	 					Player* thePlayer = players[0];
+ 						int x=thePlayer->getXPosition();
+ 						
+ 					 	int y=thePlayer->getYPosition();
+
+ 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						// numberOfPlayers=players.size();
-	 				// 	for(int i=0; i<numberOfPlayers; i++){
-	 				// 		thePlayer=players[i];
-	 				// 		//for each player we need coordinates
-	 				// 		int x=thePlayer.getXPosition();
-	 				// 		int y=thePlayer.getYPosition();
-	 				// 		//map(x,y).settexture(thePlayer.playerTypeImage);
-
-	 				// 	}
+						//std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						
+	 						Player* thePlayer = players[i];
+	 						//printf("player %d accessed\n", i + 1);
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 					 	int thePlayerY=thePlayer->getYPosition();
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						canshoot=true;
 						shootplasma=true;
 					 }
 					}
+				}
 
 
 					//SHOOT BULLET
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 100 && event.mouseButton.x >= 75 && event.mouseButton.y >= 50) {
 						if (youDied==false){
-							 	//find player x and y first
-					// int x=players[0].getXPosition();
-	 			// 		int y=players[0].getYPosition();
-					 	map[10][5].setTexture(chartexture);
-					 	int x=6;
-					 	int y=6;
-						int xvalues[9]=
-						{-1,0,1,-1,1,-1,0,1};
+						std::vector<Player*> players = *(game.getPlayerList());
+	 					Player* thePlayer = players[0];
+ 						int x=thePlayer->getXPosition();
+ 						
+ 					 	int y=thePlayer->getYPosition();
+
+ 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						// numberOfPlayers=players.size();
-	 				// 	for(int i=0; i<numberOfPlayers; i++){
-	 				// 		thePlayer=players[i];
-	 				// 		//for each player we need coordinates
-	 				// 		int x=thePlayer.getXPosition();
-	 				// 		int y=thePlayer.getYPosition();
-	 				// 		//map(x,y).settexture(thePlayer.playerTypeImage);
-
-	 				// 	}
+						//std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						
+	 						Player* thePlayer = players[i];
+	 						//printf("player %d accessed\n", i + 1);
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 					 	int thePlayerY=thePlayer->getYPosition();
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
-	 					movetable.setTexture(movetabletexture);
+						movetable.setTexture(movetabletexture);
 	 					canshoot=true;
 						shootbullet=true;
 						 }
 							 }
+							}
 
 
 					// //SHIELD PLASMA
@@ -412,28 +443,32 @@ int main() {
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						if (youDied==false){
 						//call to get player corrdinates returns x,y
-						int x=6;
-					 	int y=6;
-						// int x=players[0].getXPosition();
-	 				// 	int y=players[0].getYPosition();
-						//below code is logic to show avaible moves on board
-						//need to find a way to not draw on bad move
-						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						std::vector<Player*> players = *(game.getPlayerList());
+	 					Player* thePlayer = players[0];
+ 						int x=thePlayer->getXPosition();
+ 						
+ 					 	int y=thePlayer->getYPosition();
+
+ 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
 						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
 						for(int j=0; j<8; j++){
 
 							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
 						}
 						//redraw char here
-						//numberOfPlayers=players.size();
-	 					// for(int i=0; i<numberOfPlayers; i++){
-	 					// 	thePlayer=players[i];
-	 					// 	//for each player we need coordinates
-	 					// 	// int x=thePlayer.getXPosition();
-	 					// 	// int y=thePlayer.getYPosition();
-	 					// 	//map(x,y).settexture(thePlayer.playerTypeImage);
-
-	 					// }
+						//std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						
+	 						Player* thePlayer = players[i];
+	 						//printf("player %d accessed\n", i + 1);
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 					 	int thePlayerY=thePlayer->getYPosition();
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						canmove=true;
@@ -441,6 +476,7 @@ int main() {
 						
 					}
 				}
+			}
 					//************
 					//LOGIC FOR MOVE AND SHOOT PLASMA/BULLET
 					//**********************
