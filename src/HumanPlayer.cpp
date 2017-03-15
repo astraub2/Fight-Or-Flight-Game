@@ -1,7 +1,8 @@
 #include "HumanPlayer.hpp"
 
 HumanPlayer::HumanPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
-
+	printf("HumanPlayer's x = %d\n", this->x);
+	printf("HumanPlayer's y = %d\n", this->y);
 }
 
 HumanPlayer::~HumanPlayer() {
@@ -9,10 +10,12 @@ HumanPlayer::~HumanPlayer() {
 }
 
 int HumanPlayer::getXPosition() {
+	printf("HumanPlayer::getXPosition() returning %d\n", this->x);
 	return this->x;
 }
 
 int HumanPlayer::getYPosition() {
+	printf("HumanPlayer::getYPosition() returning %d\n", this->y);
 	return this->y;
 }
 
@@ -36,21 +39,21 @@ PlayerMove::BulletOrShieldType HumanPlayer::getShieldType() {
 	return this->shieldType;
 }
 
-void HumanPlayer::move(std::vector<Player>* playerListPointer, int size) {
+void HumanPlayer::move(std::vector<Player*>* playerListPointer, int size) {
 	//Move needs to: Move the player. PlayMove will set the movingTo marker.
 	//Move needs to check the point being moved to and make sure no other player is moving onto that point.
 	int movingToX = (*movingTo).getX();
 	int movingToY = (*movingTo).getY();
-	std::vector<Player> playerList = *playerListPointer;
+	std::vector<Player*> playerList = *playerListPointer;
 
 	for (int k = 0; k < playerList.size(); k++) {
-		if (playerList[k].getXPosition() == movingToX && playerList[k].getYPosition() == movingToY) { // if there's someone on the point
-			if (playerList[k].getMovingTo() != movingTo || playerList[k].getMovingTo() != nullptr) { // and they're not moving
+		if (playerList[k]->getXPosition() == movingToX && playerList[k]->getYPosition() == movingToY) { // if there's someone on the point
+			if (playerList[k]->getMovingTo() != movingTo || playerList[k]->getMovingTo() != nullptr) { // and they're not moving
 				return; // we can't move there. Stop.
 			}
 		}
 
-		if (playerList[k].getMovingTo() == movingTo && &playerList[k] != this) { // if someone else is moving to the point and it's not us
+		if (playerList[k]->getMovingTo() == movingTo && playerList[k] != this) { // if someone else is moving to the point and it's not us
 			return; // we can't move there. Stop.
 		}
 	}
@@ -59,7 +62,7 @@ void HumanPlayer::move(std::vector<Player>* playerListPointer, int size) {
 	setYPosition(movingToY);
 }
 
-void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player>* playerListPointer, int size) {
+void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player*>* playerListPointer, int size) {
 	//Shoot needs to: Check all tiles in the direction decided by (xOffset, yOffset).
 	//If a player is found, and their shield is of the wrong type for the bullet (i.e. not the same)
 		//then mark that player for death
@@ -96,12 +99,12 @@ void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 		//loop through player list
 		//check if they're on the correct point
 		//remaining logic	
-		std::vector<Player> playerList = *playerListPointer;
+		std::vector<Player*> playerList = *playerListPointer;
 
 		for (int i = 0; i < playerList.size(); i++) {
-			if (&playerList[i] != this) {// if the player is not us
-				if ((playerList[i]).getShieldType() != bulletOrShieldType) {
-					(playerList[i]).setMarkedForDeath(true);
+			if (playerList[i] != this) {// if the player is not us
+				if ((playerList[i])->getShieldType() != bulletOrShieldType) {
+					(playerList[i])->setMarkedForDeath(true);
 					if (bulletOrShieldType != PlayerMove::PLASMA) {
 						stillGoing = false;
 					}
@@ -128,7 +131,7 @@ void HumanPlayer::resetShieldType() {
 	HumanPlayer::shieldType = PlayerMove::NONE;
 }
 
-void HumanPlayer::resetMovingTo(std::vector< std::vector<Point> >* pointListPointer) {
+void HumanPlayer::resetMovingTo(Point*** pointListPointer) {
 	movingTo = &(*pointListPointer)[x][y];
 } 
 
@@ -140,7 +143,7 @@ bool HumanPlayer::getMarkedForDeath() {
 	return this->markedForDeath;
 }
 
-PlayerMove HumanPlayer::playMove(PlayerMove humanPlayerMove, std::vector< std::vector<Point> >* pointListPointer, int size, int index) {
+PlayerMove HumanPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointListPointer, int size, int index) {
 	//TODO O_O
 	int xOffset = humanPlayerMove.getXOffset();
 	int yOffset = humanPlayerMove.getYOffset();

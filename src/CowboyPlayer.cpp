@@ -1,7 +1,8 @@
 #include "CowboyPlayer.hpp"
 
 CowboyPlayer::CowboyPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false) {
-
+	printf("CowboyPlayer's x = %d\n", this->x);
+	printf("CowboyPlayer's y = %d\n", this->y);
 }
 
 CowboyPlayer::~CowboyPlayer() {
@@ -9,10 +10,12 @@ CowboyPlayer::~CowboyPlayer() {
 }
 
 int CowboyPlayer::getXPosition() {
+	printf("CowboyPlayer::getXPosition() returning %d\n", this->x);
 	return this->x;
 }
 
 int CowboyPlayer::getYPosition() {
+	printf("CowboyPlayer::getYPosition() returning %d\n", this->y);
 	return this->y;
 }
 
@@ -36,21 +39,21 @@ PlayerMove::BulletOrShieldType CowboyPlayer::getShieldType() {
 	return this->shieldType;
 }
 
-void CowboyPlayer::move(std::vector<Player>* playerListPointer, int size) {
+void CowboyPlayer::move(std::vector<Player*>* playerListPointer, int size) {
 	//Move needs to: Move the player. PlayMove will set the movingTo marker.
 	//Move needs to check the point being moved to and make sure no other player is moving onto that point.
 	int movingToX = (*movingTo).getX();
 	int movingToY = (*movingTo).getY();
-	std::vector<Player> playerList = *playerListPointer;
+	std::vector<Player*> playerList = *playerListPointer;
 
 	for (int k = 0; k < playerList.size(); k++) {
-		if (playerList[k].getXPosition() == movingToX && playerList[k].getYPosition() == movingToY) { // if there's someone on the point
-			if (playerList[k].getMovingTo() != movingTo || playerList[k].getMovingTo() != nullptr) { // and they're not moving
+		if (playerList[k]->getXPosition() == movingToX && playerList[k]->getYPosition() == movingToY) { // if there's someone on the point
+			if (playerList[k]->getMovingTo() != movingTo || playerList[k]->getMovingTo() != nullptr) { // and they're not moving
 				return; // we can't move there. Stop.
 			}
 		}
 
-		if (playerList[k].getMovingTo() == movingTo && &playerList[k] != this) { // if someone else is moving to the point and it's not us
+		if (playerList[k]->getMovingTo() == movingTo && playerList[k] != this) { // if someone else is moving to the point and it's not us
 			return; // we can't move there. Stop.
 		}
 	}
@@ -59,7 +62,7 @@ void CowboyPlayer::move(std::vector<Player>* playerListPointer, int size) {
 	setYPosition(movingToY);
 }
 
-void CowboyPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player>* playerListPointer, int size) {
+void CowboyPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletOrShieldType, std::vector<Player*>* playerListPointer, int size) {
 	//Shoot needs to: Check all tiles in the direction decided by (xOffset, yOffset).
 	//If a player is found, and their shield is of the wrong type for the bullet (i.e. not the same)
 		//then mark that player for death
@@ -96,12 +99,12 @@ void CowboyPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldTyp
 		//loop through player list
 		//check if they're on the correct point
 		//remaining logic	
-		std::vector<Player> playerList = *playerListPointer;
+		std::vector<Player*> playerList = *playerListPointer;
 
 		for (int i = 0; i < playerList.size(); i++) {
-			if (&playerList[i] != this) {// if the player is not us
-				if ((playerList[i]).getShieldType() != bulletOrShieldType) {
-					(playerList[i]).setMarkedForDeath(true);
+			if (playerList[i] != this) {// if the player is not us
+				if ((playerList[i])->getShieldType() != bulletOrShieldType) {
+					(playerList[i])->setMarkedForDeath(true);
 					if (bulletOrShieldType != PlayerMove::PLASMA) {
 						stillGoing = false;
 					}
@@ -128,7 +131,7 @@ void CowboyPlayer::resetShieldType() {
 	CowboyPlayer::shieldType = PlayerMove::NONE;
 }
 
-void CowboyPlayer::resetMovingTo(std::vector< std::vector<Point> >* pointListPointer) {
+void CowboyPlayer::resetMovingTo(Point*** pointListPointer) {
 	movingTo = &(*pointListPointer)[x][y];
 } 
 
@@ -140,7 +143,7 @@ bool CowboyPlayer::getMarkedForDeath() {
 	return this->markedForDeath;
 }
 
-PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, std::vector< std::vector<Point> >* pointListPointer, int size, int index) {
+PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointListPointer, int size, int index) {
 	//Temporary: this will be changed later
 	return PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, index);
 }

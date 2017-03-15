@@ -8,6 +8,8 @@
 #ifndef PLAYERMOVE_HPP_
 #define PLAYERMOVE_HPP_
 
+#include <iostream>
+
 class PlayerMove {
 public:
 	enum BulletOrShieldType {

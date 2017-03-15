@@ -14,30 +14,30 @@ class HumanPlayer : public Player {
 public:
 	HumanPlayer(int x, int y);
 	virtual ~HumanPlayer();
-	virtual int getXPosition();
-	virtual int getYPosition();
-	virtual int getAmmo();
-	virtual PlayerMove::BulletOrShieldType getShieldType();
+	int getXPosition();
+	int getYPosition();
+	int getAmmo();
+	PlayerMove::BulletOrShieldType getShieldType();
 
-	virtual void move(std::vector<Player>* playerListPointer, int size);
-	virtual void shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletType, std::vector<Player>* playerListPointer, int size); // bulletType: 0 = metal bullet, 1 = plasma beam
-	virtual void shield(PlayerMove::BulletOrShieldType shieldType); // shieldType: 0 = metal shield, 1 = thermionic reflector
-	virtual void reload();
+	void move(std::vector<Player*>* playerListPointer, int size);
+	void shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType bulletType, std::vector<Player*>* playerListPointer, int size); // bulletType: 0 = metal bullet, 1 = plasma beam
+	void shield(PlayerMove::BulletOrShieldType shieldType); // shieldType: 0 = metal shield, 1 = thermionic reflector
+	void reload();
 
-	virtual void resetShieldType();
-	virtual void resetMovingTo(std::vector< std::vector<Point> >* pointListPointer);
+	void resetShieldType();
+	void resetMovingTo(Point*** pointListPointer);
 
-	virtual void setMarkedForDeath(bool mark);
-	virtual bool getMarkedForDeath();
+	void setMarkedForDeath(bool mark);
+	bool getMarkedForDeath();
 
-	virtual PlayerMove playMove(PlayerMove humanPlayerMove, std::vector< std::vector<Point> >* pointListPointer, int size, int index);
+	PlayerMove playMove(PlayerMove humanPlayerMove, Point*** pointListPointer, int size, int index);
 
-	virtual Point* getMovingTo();
+	Point* getMovingTo();
 
 private:
 	PlayerMove::BulletOrShieldType shieldType;
-	virtual void setXPosition(int newX);
-	virtual void setYPosition(int newY);
+	void setXPosition(int newX);
+	void setYPosition(int newY);
 	int x;
 	int y;
 	int ammo;

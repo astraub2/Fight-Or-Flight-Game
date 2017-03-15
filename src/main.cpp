@@ -212,6 +212,7 @@ int main() {
 
 
 	int numBullets=0;
+	int numberOfPlayers;
 	bool canmove=false;
 	bool canshoot=false;
 	bool shootplasma=false;
@@ -282,17 +283,21 @@ int main() {
 						welcome.setTexture(welcomemessagecleartexture);
 
 
-	 					//Game game;
-	 					// std::vector<Player> players = *(game.getPlayerList());
-	 					// numberOfPlayers=players.size();
-	 					// for(int i=0; i<numberOfPlayers; i++){
-	 					// 	thePlayer=players[i];
-	 					// 	//for each player we need coordinates
-	 					// 	int x=thePlayer.getXPosition();
-	 					// 	int y=thePlayer.getYPosition();
-	 					// 	//map(x,y).settexture(thePlayer.playerTypeImage);
+	 					Game game;
+	 					std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						Player* thePlayer = players[i];
+	 						printf("player %d accessed\n", i + 1);
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 						printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 					 	int thePlayerY=thePlayer->getYPosition();
+	 						printf("player %d's y = %d\n", i + 1, thePlayerY);
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayer->playerType]);
+	 						printf("player %d texture set\n", i + 1);
 
-	 					// }
+	 					}
 
 
 	 					

@@ -8,7 +8,7 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
-#include <vector> 
+#include <vector>
 #include "HumanPlayer.hpp"
 #include "AlienPlayer.hpp"
 #include "CowboyPlayer.hpp"
@@ -20,11 +20,11 @@ public:
 	int getSize();
 	bool playRound(PlayerMove humanPlayerMove);
 	Point* getPoint(int x, int y);
-	std::vector<Player>* getPlayerList();
+	std::vector<Player *>* getPlayerList();
 
 private:
-	std::vector< std::vector<Point> > board;
-	std::vector<Player> playerList;
+	Point** board;
+	std::vector<Player *> playerList;
 	int size;
 };
 
