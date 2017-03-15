@@ -236,54 +236,7 @@ int main() {
 
 			case sf::Event::MouseButtonPressed:
 				if (event.mouseButton.button == sf::Mouse::Left) {
-					
-					if (youDied==false){
-					//clear board and redraw all remaining characters
-					for(int i = 0; i < 15; i++){   
-				    for(int j = 0; j < 15; j++){ 
-				    	map[i][j].setTexture(tiletexture); 
-				    }
-				}
-						std::vector<Player*> players = *(game.getPlayerList());
-	 					numberOfPlayers=players.size();
-	 					int pointlessint=0;
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						
-	 						Player* thePlayer = players[i];
-	 					//for each player we need coordinates
-	 						int thePlayerX=thePlayer->getXPosition();
-	 					 	int thePlayerY=thePlayer->getYPosition();
-	 						int thePlayerType=thePlayer->getPlayerType();
-	 						if(thePlayerType==0){
-	 							pointlessint+=1;
-	 						
-	 						}
-	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
-	 					}
-	 				if(pointlessint==0)
-	 					youDied=true;
-
- 					if (youDied==true){
- 						for(int i = 0; i < 15; i++){   
-				    	for(int j = 0; j < 15; j++){ 
-
-				    	map[i][j].setTexture(tiletexture); 
-				    }
-				}
- 						died.setTexture(diedtexture);
- 						welcome.setTexture(welcomemessagetexture);
- 					}
-
-
-				    //clear the move table if present
-				    movetable.setTexture(movetablecleartexture);
-				    }
-				
-
-				
-					
-				
-				    //START NEW GAME
+				  //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
 	 					numBullets=0;
 	 					bullet.setTexture(bullets[numBullets]);
@@ -688,7 +641,63 @@ int main() {
 							
 						canshoot=false;
 					}
+					
+
+					
+					
+				    
 				}
+				if (youDied==false){
+					//clear board and redraw all remaining characters
+					for(int i = 0; i < 15; i++){   
+				    for(int j = 0; j < 15; j++){ 
+				    	map[i][j].setTexture(tiletexture); 
+				    }
+				}
+						std::vector<Player*> players = *(game.getPlayerList());
+	 					numberOfPlayers=players.size();
+	 					int pointlessint=0;
+	 					for(int i=0; i<numberOfPlayers; i++){
+	 						
+	 						Player* thePlayer = players[i];
+	 					//for each player we need coordinates
+	 						int thePlayerX=thePlayer->getXPosition();
+	 					 	int thePlayerY=thePlayer->getYPosition();
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						if(thePlayerType==0){
+	 							pointlessint+=1;
+	 						
+	 						}
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
+	 					}
+	 				if(pointlessint==0)
+	 					youDied=true;
+
+ 					if (youDied==true){
+ 						for(int i = 0; i < 15; i++){   
+				    	for(int j = 0; j < 15; j++){ 
+
+				    	map[i][j].setTexture(tiletexture); 
+				    }
+				}
+ 						died.setTexture(diedtexture);
+ 						welcome.setTexture(welcomemessagetexture);
+ 					}
+
+
+				    //clear the move table if present
+				    movetable.setTexture(movetablecleartexture);
+				    }
+				    if (youDied==true){
+ 						for(int i = 0; i < 15; i++){   
+				    	for(int j = 0; j < 15; j++){ 
+
+				    	map[i][j].setTexture(tiletexture); 
+				    }
+				}
+ 						died.setTexture(diedtexture);
+ 						welcome.setTexture(welcomemessagetexture);
+ 					}
 						
 						
 						
