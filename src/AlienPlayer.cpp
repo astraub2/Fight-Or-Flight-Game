@@ -1,9 +1,9 @@
 #include "AlienPlayer.hpp"
 
 AlienPlayer::AlienPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(1) {
-	printf("AlienPlayer's x = %d\n", this->x);
-	printf("AlienPlayer's y = %d\n", this->y);
-	printf("AlienPlayer's type = %d\n", this->playerType);
+	// printf("AlienPlayer's x = %d\n", this->x);
+	// printf("AlienPlayer's y = %d\n", this->y);
+	// printf("AlienPlayer's type = %d\n", this->playerType);
 }
 
 AlienPlayer::~AlienPlayer() {
@@ -11,12 +11,12 @@ AlienPlayer::~AlienPlayer() {
 }
 
 int AlienPlayer::getXPosition() {
-	printf("AlienPlayer::getXPosition() returning %d\n", this->x);
+	// printf("AlienPlayer::getXPosition() returning %d\n", this->x);
 	return this->x;
 }
 
 int AlienPlayer::getYPosition() {
-	printf("AlienPlayer::getYPosition() returning %d\n", this->y);
+	// printf("AlienPlayer::getYPosition() returning %d\n", this->y);
 	return this->y;
 }
 
@@ -28,7 +28,7 @@ void AlienPlayer::setYPosition(int newY) {
 	this->y = newY;
 }
 int AlienPlayer::getPlayerType() {
-	printf("AlienPlayer::getPlayerType() returning %d\n", this->playerType);
+	// printf("AlienPlayer::getPlayerType() returning %d\n", this->playerType);
 	return this->playerType;
 }
 

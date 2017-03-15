@@ -219,7 +219,8 @@ int main() {
 	bool shootbullet=false;
 	bool youDied=true;
 	welcome.setTexture(welcomemessagetexture);
-	Game game;
+	Game* gamePointer = (new Game());
+	Game game = *gamePointer;
 	
 	
 	//actual window interactions
@@ -294,9 +295,15 @@ int main() {
 						welcome.setTexture(welcomemessagecleartexture);
 						int thePlayerX;
 						int thePlayerY;
+						for(int i = 0; i < 15; i++){   
+				  			for(int j = 0; j < 15; j++){ 
+				    			map[i][j].setTexture(tiletexture); 
+				    		}		
+						}
 
-
-	 					Game game;
+	 					delete gamePointer;
+	 					gamePointer = new Game();
+	 					game = *gamePointer;
 	 					std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
 	 					for(int i=0; i<numberOfPlayers; i++){
@@ -307,6 +314,8 @@ int main() {
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 						
 	 					}
+
+	 					//std::cout << "size of players vector: " << players.size() << std::endl;
 
 
 	 					

@@ -1,9 +1,9 @@
 #include "CowboyPlayer.hpp"
 
 CowboyPlayer::CowboyPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(2) {
-	printf("CowboyPlayer's x = %d\n", this->x);
-	printf("CowboyPlayer's y = %d\n", this->y);
-	printf("CowboyPlayer's type = %d\n", this->playerType);
+	// printf("CowboyPlayer's x = %d\n", this->x);
+	// printf("CowboyPlayer's y = %d\n", this->y);
+	// printf("CowboyPlayer's type = %d\n", this->playerType);
 }
 
 CowboyPlayer::~CowboyPlayer() {
@@ -11,16 +11,16 @@ CowboyPlayer::~CowboyPlayer() {
 }
 
 int CowboyPlayer::getXPosition() {
-	printf("CowboyPlayer::getXPosition() returning %d\n", this->x);
+	//printf("CowboyPlayer::getXPosition() returning %d\n", this->x);
 	return this->x;
 }
 
 int CowboyPlayer::getYPosition() {
-	printf("CowboyPlayer::getYPosition() returning %d\n", this->y);
+	// printf("CowboyPlayer::getYPosition() returning %d\n", this->y);
 	return this->y;
 }
 int CowboyPlayer::getPlayerType() {
-	printf("CowboyPlayer::getPlayerType() returning %d\n", this->playerType);
+	// printf("CowboyPlayer::getPlayerType() returning %d\n", this->playerType);
 	return this->playerType;
 }
 void CowboyPlayer::setXPosition(int newX) {
