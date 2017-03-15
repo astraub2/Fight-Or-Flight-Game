@@ -153,7 +153,7 @@ PlayerMove HumanPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointListP
 	int xOffset = humanPlayerMove.getXOffset();
 	int yOffset = humanPlayerMove.getYOffset();
 	Point* setMovingTo;
-	if (x + xOffset > size || x + xOffset < 0 || y + yOffset > size || y + yOffset < 0) {
+	if (x + xOffset >= size || x + xOffset < 0 || y + yOffset >= size || y + yOffset < 0) {
 		setMovingTo = &(*pointListPointer)[x][y];
 	} else {
 		setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];

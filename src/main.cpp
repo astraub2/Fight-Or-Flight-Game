@@ -327,10 +327,10 @@ int main() {
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
-						if (numBullets<9)
-							numBullets+=1;
-						else
-							numBullets=9;
+							youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
+							
+						std::vector<Player*> players = *(game.getPlayerList());
+						numBullets = players[0]->getAmmo();
 						//playerMove=HumanPlayer.reload()
 						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
 						// game.playRound(playerMove);

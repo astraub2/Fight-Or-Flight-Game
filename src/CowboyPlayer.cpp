@@ -149,5 +149,16 @@ bool CowboyPlayer::getMarkedForDeath() {
 
 PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointListPointer, int size, int index) {
 	//Temporary: this will be changed later
-	return PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, index);
+	Point* setMovingTo;
+
+	int xOffset = 1;
+	int yOffset = -1;
+
+	if (x + xOffset >= size || x + xOffset < 0 || y + yOffset >= size || y + yOffset < 0) {
+		setMovingTo = &(*pointListPointer)[x][y];
+	} else {
+		setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];
+	}
+	movingTo = setMovingTo;
+	return PlayerMove(PlayerMove::MOVE, PlayerMove::NONE, xOffset, yOffset, index);
 }
