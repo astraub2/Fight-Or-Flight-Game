@@ -243,61 +243,50 @@ int main() {
 				    	map[i][j].setTexture(tiletexture); 
 				    }
 				}
-				    //TODO redraw characters
-				  //   std::vector<Player>* players=game.getPlayerList();
- 					// numberOfPlayers=players.size();
- 					// for(int i=0; i<numberOfPlayers; i++){
- 					// 	thePlayer=players[i];
- 					// 	//for each player we need coordinates
- 					// 	int x=thePlayer.getXPosition();
-	 				// 	int y=thePlayer.getYPosition();
-	 				// 	//map(x,y).settexture(thePlayer.playerTypeImage);
-
- 					// }
- 					std::vector<Player*> players = *(game.getPlayerList());
+						std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
-	 					youDied=true;
+	 					int pointlessint=0;
 	 					for(int i=0; i<numberOfPlayers; i++){
 	 						
 	 						Player* thePlayer = players[i];
-	 						//printf("player %d accessed\n", i + 1);
 	 					//for each player we need coordinates
 	 						int thePlayerX=thePlayer->getXPosition();
-	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
 	 					 	int thePlayerY=thePlayer->getYPosition();
-
-	 						
 	 						int thePlayerType=thePlayer->getPlayerType();
-	 						if(thePlayerType==0)
-	 							youDied=false;
+	 						if(thePlayerType==0){
+	 							pointlessint+=1;
+	 						
+	 						}
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
-	 						//printf("player %d texture set as %d\n", i + 1, thePlayerType);
-
 	 					}
+	 				if(pointlessint==0)
+	 					youDied=true;
 
+ 					if (youDied==true){
+ 						for(int i = 0; i < 15; i++){   
+				    	for(int j = 0; j < 15; j++){ 
 
- 					//TODO: If player is now dead(not in playerList), display YOU DIED
- 					//youDied=true;
- 					//died.setTexture(diedtexture);
- 					//welcome.setTexture(welcomemessagetexture);
-
+				    	map[i][j].setTexture(tiletexture); 
+				    }
+				}
+ 						died.setTexture(diedtexture);
+ 						welcome.setTexture(welcomemessagetexture);
+ 					}
 
 
 				    //clear the move table if present
 				    movetable.setTexture(movetablecleartexture);
-				    
-				}
+				    }
+				
 
 				
 					
 				
 				    //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
-	 					//map[5][5].setTexture(chartexture);
 	 					numBullets=0;
 	 					bullet.setTexture(bullets[numBullets]);
 	 					canmove=false;
-
 						canshoot=false;
 						shootplasma=false;
 						shootbullet=false;
@@ -312,16 +301,11 @@ int main() {
 	 					numberOfPlayers=players.size();
 	 					for(int i=0; i<numberOfPlayers; i++){
 	 						Player* thePlayer = players[i];
-	 						//printf("player %d accessed\n", i + 1);
-	 					//for each player we need coordinates
 	 						thePlayerX=thePlayer->getXPosition();
-	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
 	 					 	thePlayerY=thePlayer->getYPosition();
-	 						//printf("player %d's y = %d\n", i + 1, thePlayerY);
 	 						int thePlayerType=thePlayer->getPlayerType();
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
-	 						//printf("player %d texture set as %d\n", i + 1, thePlayerType);
-
+	 						
 	 					}
 
 
