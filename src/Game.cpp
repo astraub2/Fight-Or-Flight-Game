@@ -24,17 +24,17 @@ Game::Game() : size(15) {
 	int y = 5;
 	HumanPlayer* humanPlayer = new HumanPlayer(x, y);
 	playerList.push_back(humanPlayer);
-	printf("HumanPlayer created\n");
+	//printf("HumanPlayer created\n");
 	x = 10;
 	y = 10;
 	AlienPlayer* alienPlayer = new AlienPlayer(x, y);
 	playerList.push_back(alienPlayer);
-	printf("AlienPlayer created\n");
+	//printf("AlienPlayer created\n");
 	x = 5;
 	y = 10;
 	CowboyPlayer* cowboyPlayer = new CowboyPlayer(x, y);
 	playerList.push_back(cowboyPlayer);
-	printf("CowboyPlayer created\n");
+	//printf("CowboyPlayer created\n");
 	// requires having some players created
 	// for (int i = 1; i < 5; i++) {
 	// 	bool done = false;

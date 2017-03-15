@@ -290,14 +290,15 @@ int main() {
 	 					numberOfPlayers=players.size();
 	 					for(int i=0; i<numberOfPlayers; i++){
 	 						Player* thePlayer = players[i];
-	 						printf("player %d accessed\n", i + 1);
+	 						//printf("player %d accessed\n", i + 1);
 	 					//for each player we need coordinates
 	 						thePlayerX=thePlayer->getXPosition();
-	 						printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
 	 					 	thePlayerY=thePlayer->getYPosition();
-	 						printf("player %d's y = %d\n", i + 1, thePlayerY);
-	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayer->playerType]);
-	 						printf("player %d texture set as %d\n", i + 1, thePlayer->playerType);
+	 						//printf("player %d's y = %d\n", i + 1, thePlayerY);
+	 						int thePlayerType=thePlayer->getPlayerType();
+	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
+	 						//printf("player %d texture set as %d\n", i + 1, thePlayerType);
 
 	 					}
 

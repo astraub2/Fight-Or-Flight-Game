@@ -17,6 +17,7 @@ public:
 	virtual int getXPosition();
 	virtual int getYPosition();
 	virtual int getAmmo();
+	virtual int getPlayerType();
 	virtual PlayerMove::BulletOrShieldType getShieldType();
 
 	virtual void move(std::vector<Player*>* playerListPointer, int size);

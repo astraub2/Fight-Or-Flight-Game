@@ -12,6 +12,8 @@ int Player::getXPosition() {
 
 int Player::getYPosition() {
 }
+int Player::getPlayerType() {
+}
 
 void Player::setXPosition(int newX) {
 }

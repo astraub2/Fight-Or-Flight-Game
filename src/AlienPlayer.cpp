@@ -3,6 +3,7 @@
 AlienPlayer::AlienPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(1) {
 	printf("AlienPlayer's x = %d\n", this->x);
 	printf("AlienPlayer's y = %d\n", this->y);
+	printf("AlienPlayer's type = %d\n", this->playerType);
 }
 
 AlienPlayer::~AlienPlayer() {
@@ -25,6 +26,10 @@ void AlienPlayer::setXPosition(int newX) {
 
 void AlienPlayer::setYPosition(int newY) {
 	this->y = newY;
+}
+int AlienPlayer::getPlayerType() {
+	printf("AlienPlayer::getPlayerType() returning %d\n", this->playerType);
+	return this->playerType;
 }
 
 int AlienPlayer::getAmmo() {

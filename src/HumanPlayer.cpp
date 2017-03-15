@@ -3,6 +3,7 @@
 HumanPlayer::HumanPlayer(int x, int y) : x(x), y(y), ammo(0), shieldType(PlayerMove::NONE), movingTo(nullptr), markedForDeath(false), playerType(0) {
 	printf("HumanPlayer's x = %d\n", this->x);
 	printf("HumanPlayer's y = %d\n", this->y);
+	printf("HumanPlayer's type = %d\n", this->playerType);
 }
 
 HumanPlayer::~HumanPlayer() {
@@ -17,6 +18,10 @@ int HumanPlayer::getXPosition() {
 int HumanPlayer::getYPosition() {
 	printf("HumanPlayer::getYPosition() returning %d\n", this->y);
 	return this->y;
+}
+int HumanPlayer::getPlayerType() {
+	printf("HumanPlayer::getPlayerType() returning %d\n", this->playerType);
+	return this->playerType;
 }
 
 void HumanPlayer::setXPosition(int newX) {

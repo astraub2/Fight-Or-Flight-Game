@@ -16,6 +16,7 @@ public:
 	virtual ~HumanPlayer();
 	virtual int getXPosition();
 	virtual int getYPosition();
+	virtual int getPlayerType();
 	virtual int getAmmo();
 	virtual PlayerMove::BulletOrShieldType getShieldType();
 
