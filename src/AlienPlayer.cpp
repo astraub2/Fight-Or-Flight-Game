@@ -97,14 +97,15 @@ void AlienPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 		}
 	}
 
-	while ((currentX >= 0 || currentX < size || currentY >= 0 || currentY < size) && stillGoing) { // while we're still looking at a point on the board
+	std::vector<Player*> playerList = *playerListPointer;
+
+	while ((currentX >= 0 && currentX < size && currentY >= 0 && currentY < size) && stillGoing) { // while we're still looking at a point on the board
 		currentX += xOffset;
 		currentY += yOffset; //move the pointer to the next point
 			
 		//loop through player list
 		//check if they're on the correct point
 		//remaining logic	
-		std::vector<Player*> playerList = *playerListPointer;
 
 		for (int i = 0; i < playerList.size(); i++) {
 			if (playerList[i] != this) {// if the player is not us

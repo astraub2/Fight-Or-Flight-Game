@@ -118,16 +118,18 @@ bool Game::playRound(PlayerMove humanPlayerMove) {
 	//marks handled in the player functions
 	//kill all players marked for death
 	if (playerList[0]->getMarkedForDeath()) {
+		std::cout << "Human Player died" << std::endl;
 		return true;
 	}
 
-	std::vector<Player*>::iterator current_position = playerList.begin();
+	auto current_position = playerList.begin();
 	while (current_position != playerList.end()) {
 		if ((*current_position)->getMarkedForDeath()) {
 			std::vector<Player*>::iterator new_position = playerList.erase(current_position);
+			std::cout << "Someone died" << std::endl;
 			current_position = new_position;
 		} else {
-			current_position += 1;
+			current_position++;
 		}
 	}
 	//reset shieldType, movingTo at the end
@@ -138,6 +140,7 @@ bool Game::playRound(PlayerMove humanPlayerMove) {
 		playerList[i]->resetMovingTo(&board);
 	}
 	//if the human player is marked for death, somehow let the main function know. return a value: true if human player died, false if they didn't
+	std::cout << "PlayRound completed" << std::endl;
 	return false;
 }
 
