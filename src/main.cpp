@@ -236,6 +236,9 @@ int main() {
 
 			case sf::Event::MouseButtonPressed:
 				if (event.mouseButton.button == sf::Mouse::Left) {
+					//clear the move table if present
+				    movetable.setTexture(movetablecleartexture);
+				    
 				  //START NEW GAME
 				    if (event.mouseButton.x <= 455 && event.mouseButton.y <= 55 && event.mouseButton.x >= 335 && event.mouseButton.y >= 5) {
 	 					numBullets=0;
@@ -267,20 +270,13 @@ int main() {
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 						
 	 					}
-
-	 					//std::cout << "size of players vector: " << players.size() << std::endl;
-
-
-	 					
-					//Need BOOl here, youDied: initialize false, true when humanplayer is not in playerlist
-					//youdied wraps the rest of the button functions
-					//LOAD 
+				//LOAD 
 				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50 && event.mouseButton.x >= 5 && event.mouseButton.y >= 0) {
 						if (youDied==false){
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
-							youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
+						youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
 							
 						std::vector<Player*> players = *(game.getPlayerList());
 						numBullets = players[0]->getAmmo();
@@ -290,7 +286,7 @@ int main() {
 						bullet.setTexture(bullets[numBullets]);
 					}
 					}
-					// //SHOOT PLASMA
+					 //SHOOT PLASMA
 					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
 					 	if (youDied==false){
 					 	std::vector<Player*> players = *(game.getPlayerList());
@@ -369,9 +365,8 @@ int main() {
 					// //SHIELD PLASMA
 					else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 150 && event.mouseButton.x >= 5 && event.mouseButton.y >= 100) {
 						if (youDied==false){
-						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-						//map[0][0].setTexture(chartexture);
-						// game.playRound(playerMove);
+						youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::PLASMA, 0, 0, 0));
+						
 					 }
 					}
 
@@ -379,9 +374,8 @@ int main() {
 						
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
 						if (youDied==false){
-						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-						// game.playRound(playerMove);
-					 	//map[0][1].setTexture(chartexture);
+						youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, 0));
+	
 						 }
 							}
 
@@ -389,38 +383,38 @@ int main() {
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						if (youDied==false){
 						//call to get player corrdinates returns x,y
-						std::vector<Player*> players = *(game.getPlayerList());
-	 					Player* thePlayer = players[0];
- 						int x=thePlayer->getXPosition();
+						// std::vector<Player*> players = *(game.getPlayerList());
+	 				// 	Player* thePlayer = players[0];
+ 					// 	int x=thePlayer->getXPosition();
  						
- 					 	int y=thePlayer->getYPosition();
+ 					//  	int y=thePlayer->getYPosition();
 
- 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						for(int j=0; j<8; j++){
+ 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						// for(int j=0; j<8; j++){
 
-							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						}
-						//redraw char here
-						//std::vector<Player*> players = *(game.getPlayerList());
-	 					numberOfPlayers=players.size();
+						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						// }
+						// //redraw char here
+						// //std::vector<Player*> players = *(game.getPlayerList());
+	 				// 	numberOfPlayers=players.size();
 	 					
-	 					for(int i=0; i<numberOfPlayers; i++){
+	 				// 	for(int i=0; i<numberOfPlayers; i++){
 	 						
-	 						Player* thePlayer = players[i];
-	 						//printf("player %d accessed\n", i + 1);
-	 					//for each player we need coordinates
-	 						int thePlayerX=thePlayer->getXPosition();
-	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
-	 					 	int thePlayerY=thePlayer->getYPosition();
-	 						int thePlayerType=thePlayer->getPlayerType();
-	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
+	 				// 		Player* thePlayer = players[i];
+	 				// 		//printf("player %d accessed\n", i + 1);
+	 				// 	//for each player we need coordinates
+	 				// 		int thePlayerX=thePlayer->getXPosition();
+	 				// 		//printf("player %d's x = %d\n", i + 1, thePlayerX);
+	 				// 	 	int thePlayerY=thePlayer->getYPosition();
+	 				// 		int thePlayerType=thePlayer->getPlayerType();
+	 				// 		map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
 						canmove=true;
 
 						
-					}
+					
 				}
 			}
 					//************
@@ -429,25 +423,22 @@ int main() {
 					//Left UP 
 					else if (event.mouseButton.y <=290  && event.mouseButton.x <= 45 && event.mouseButton.y >= 250 && event.mouseButton.x >= 5) {
 						if (canmove==true){
-							//offset -1,-1
-							map[5][5].setTexture(chartexture);
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::NONE, -1, -1, 0));
+					
 						canmove=false;
 					}
 					//shoot logic
 						else if (canshoot==true){
 								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
-									//offset -1,-1
-									map[5][5].setTexture(chartexture);
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, -1, 0));
+					
 
 									shootplasma=false;
 								}
 								else if(shootbullet==true){
-									//offset -1,-1
-									map[5][5].setTexture(chartexture);
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, -1, -1, 0));
+					
 									shootbullet=false;
 								}
 
@@ -459,56 +450,54 @@ int main() {
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
 						
 						if (canmove==true){
-							map[6][5].setTexture(chartexture);
-							//offset 0,-1
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, 0, -1, 0));
+					
 						canmove=false;
 					}
+					//shoot logic
 						else if (canshoot==true){
-							map[6][5].setTexture(chartexture);
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 0, -1, 0));
+					
 
-							if(shootplasma==true){
-								//offset 0,-1
-								map[6][5].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset 0,-1
-								map[6][5].setTexture(chartexture);
-								shootbullet=false;
-							}
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, 0, -1, 0));
+					
+									shootbullet=false;
+								}
 
-							
-						canshoot=false;
-					}
+								
+							canshoot=false;
+						}
 						}
 						//Right Up
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 125 && event.mouseButton.y >= 250 && event.mouseButton.x >= 85) {
 						if (canmove==true){
-							map[7][5].setTexture(chartexture);
-							//offset 1,-1
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, 1, -1, 0));
+					
 						canmove=false;
-						}
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset 1,-1
-								map[7][5].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset 1,-1
-								map[7][5].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, -1, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, 1, -1, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 						}
 						//LEFT 
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
@@ -654,6 +643,21 @@ int main() {
 				    	map[i][j].setTexture(tiletexture); 
 				    }
 				}
+				if(canmove){
+				    std::vector<Player*> players = *(game.getPlayerList());
+	 					Player* thePlayer = players[0];
+ 						int x=thePlayer->getXPosition();
+ 						
+ 					 	int y=thePlayer->getYPosition();
+
+ 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						for(int j=0; j<8; j++){
+
+							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						}
+				}
+				
 						std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
 	 					int pointlessint=0;
@@ -683,11 +687,10 @@ int main() {
  						died.setTexture(diedtexture);
  						welcome.setTexture(welcomemessagetexture);
  					}
+ 				}
 
 
-				    //clear the move table if present
-				    movetable.setTexture(movetablecleartexture);
-				    }
+				    
 				    if (youDied==true){
  						for(int i = 0; i < 15; i++){   
 				    	for(int j = 0; j < 15; j++){ 
