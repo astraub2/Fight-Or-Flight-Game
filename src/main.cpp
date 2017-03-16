@@ -249,6 +249,7 @@ int main() {
 						shootbullet=false;
 						youDied=false;
 						welcome.setTexture(welcomemessagecleartexture);
+						died.setTexture(movetablecleartexture);
 						int thePlayerX;
 						int thePlayerY;
 						for(int i = 0; i < 15; i++){   
@@ -382,34 +383,7 @@ int main() {
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						if (youDied==false){
-						//call to get player corrdinates returns x,y
-						// std::vector<Player*> players = *(game.getPlayerList());
-	 				// 	Player* thePlayer = players[0];
- 					// 	int x=thePlayer->getXPosition();
- 						
- 					//  	int y=thePlayer->getYPosition();
-
- 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						// for(int j=0; j<8; j++){
-
-						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						// }
-						// //redraw char here
-						// //std::vector<Player*> players = *(game.getPlayerList());
-	 				// 	numberOfPlayers=players.size();
-	 					
-	 				// 	for(int i=0; i<numberOfPlayers; i++){
-	 						
-	 				// 		Player* thePlayer = players[i];
-	 				// 		//printf("player %d accessed\n", i + 1);
-	 				// 	//for each player we need coordinates
-	 				// 		int thePlayerX=thePlayer->getXPosition();
-	 				// 		//printf("player %d's x = %d\n", i + 1, thePlayerX);
-	 				// 	 	int thePlayerY=thePlayer->getYPosition();
-	 				// 		int thePlayerType=thePlayer->getPlayerType();
-	 				// 		map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
-	 					//dropdown
+			
 						movetable.setTexture(movetabletexture);
 						canmove=true;
 
@@ -643,7 +617,7 @@ int main() {
 				    	map[i][j].setTexture(tiletexture); 
 				    }
 				}
-				if(canmove){
+				if(canmove || canshoot){
 				    std::vector<Player*> players = *(game.getPlayerList());
 	 					Player* thePlayer = players[0];
  						int x=thePlayer->getXPosition();
