@@ -476,134 +476,133 @@ int main() {
 						//LEFT 
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 45 && event.mouseButton.y >= 290 && event.mouseButton.x >= 5) {
 						if (canmove==true){
-							map[5][6].setTexture(chartexture);
-							//offset -1,0
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, -1, 0, 0));
+					
 						canmove=false;
-						}
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset -1,0
-								map[5][6].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset -1,0
-								map[5][6].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, 0, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, -1, 0, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 						}
 						//Right
 						else if (event.mouseButton.y <=330  && event.mouseButton.x <= 125 && event.mouseButton.y >= 290 && event.mouseButton.x >= 85) {
 						if (canmove==true){
-							map[7][6].setTexture(chartexture);
-							//offset 1,0
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, 1, 0, 0));
+					
 						canmove=false;
-						}
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset 0,1
-								map[7][6].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset 0,1
-								map[7][6].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, 0, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, 1, 0, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 				}
 						//LEFT Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 45 && event.mouseButton.y >= 330 && event.mouseButton.x >= 5) {
 						if (canmove==true){
-							map[5][7].setTexture(chartexture);
-							//offset -1,1
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, -1, 1, 0));
+					
 						canmove=false;
-						}
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset -1,1
-								map[5][7].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset -1,1
-								map[5][7].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, 1, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, -1, 1, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 				}
 						//Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 85 && event.mouseButton.y >= 330 && event.mouseButton.x >= 45) {
 						if (canmove==true){
-							map[6][7].setTexture(chartexture);
-							//offset 0,1
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, 0, 1, 0));
+					
 						canmove=false;
-						}
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset 0,1
-								map[6][7].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset 0,1
-								map[6][7].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 0, 1, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, 0, 1, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 				}
 						//Right Down
 						else if (event.mouseButton.y <=370  && event.mouseButton.x <= 125 && event.mouseButton.y >= 330 && event.mouseButton.x >= 85) {
 						//move Logic
 						if (canmove==true){
-							map[7][7].setTexture(chartexture);
-							//offset 1,1
-							// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-							// game.playRound(playerMove);
-						
+							youDied = game.playRound(PlayerMove(PlayerMove::MOVE, PlayerMove::METAL, 1, 1, 0));
+					
 						canmove=false;
-						}
-						//shoot logic
-						else if (canshoot==true){
-							if(shootplasma==true){
-								//offset 1,1
-								map[7][7].setTexture(chartexture);
-								shootplasma=false;
-							}
-							else if(shootbullet==true){
-								//offset 1,1
-								map[7][7].setTexture(chartexture);
-								shootbullet=false;
-							}
-
-							
-						canshoot=false;
 					}
+					//shoot logic
+						else if (canshoot==true){
+								//map[5][5].setTexture(chartexture);
+								if(shootplasma==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, 1, 0));
+					
+
+									shootplasma=false;
+								}
+								else if(shootbullet==true){
+									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, 1, 1, 0));
+					
+									shootbullet=false;
+								}
+
+								
+							canshoot=false;
+						}
 					
 
 					
