@@ -609,6 +609,8 @@ int main() {
 					
 				    
 				}
+				std::vector<Player*> players = *(game.getPlayerList());
+				bullet.setTexture(bullets[players[0]->getAmmo()]);
 				if (youDied==false){
 					//clear board and redraw all remaining characters
 					for(int i = 0; i < 15; i++){   
