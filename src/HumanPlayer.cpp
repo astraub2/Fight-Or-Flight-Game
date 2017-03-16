@@ -108,14 +108,16 @@ void HumanPlayer::shoot(int xOffset, int yOffset, PlayerMove::BulletOrShieldType
 
 		for (int i = 0; i < playerList.size(); i++) {
 			if (playerList[i] != this) {// if the player is not us
-				if ((playerList[i])->getShieldType() != bulletOrShieldType) {
-					(playerList[i])->setMarkedForDeath(true);
-					if (bulletOrShieldType != PlayerMove::PLASMA) {
+				if (playerList[i]->getXPosition() == currentX && playerList[i]->getYPosition() == currentY) {
+					if ((playerList[i])->getShieldType() != bulletOrShieldType) {
+						(playerList[i])->setMarkedForDeath(true);
+						if (bulletOrShieldType != PlayerMove::PLASMA) {
+							stillGoing = false;
+						}
+					} else {
 						stillGoing = false;
-					}
-				} else {
-					stillGoing = false;
-				}	
+					}	
+				}
 			}
 		}
 	}
