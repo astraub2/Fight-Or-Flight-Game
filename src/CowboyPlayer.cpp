@@ -52,7 +52,7 @@ void CowboyPlayer::move(std::vector<Player*>* playerListPointer, int size) {
 
 	for (int k = 0; k < playerList.size(); k++) {
 		if (playerList[k]->getXPosition() == movingToX && playerList[k]->getYPosition() == movingToY) { // if there's someone on the point
-			if (playerList[k]->getMovingTo() != movingTo || playerList[k]->getMovingTo() != nullptr) { // and they're not moving
+			if (playerList[k]->getMovingTo() == movingTo || playerList[k]->getMovingTo() == nullptr) { // and they're not moving
 				return; // we can't move there. Stop.
 			}
 		}
@@ -154,8 +154,8 @@ PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointList
 	//Temporary: this will be changed later
 	Point* setMovingTo;
 
-	int xOffset = 1;
-	int yOffset = -1;
+	int xOffset = 0;
+	int yOffset = 0;
 
 	if (x + xOffset >= size || x + xOffset < 0 || y + yOffset >= size || y + yOffset < 0) {
 		setMovingTo = &(*pointListPointer)[x][y];
@@ -163,5 +163,5 @@ PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointList
 		setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];
 	}
 	movingTo = setMovingTo;
-	return PlayerMove(PlayerMove::MOVE, PlayerMove::NONE, xOffset, yOffset, index);
+	return PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, index);
 }

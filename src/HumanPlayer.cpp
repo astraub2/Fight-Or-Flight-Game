@@ -53,7 +53,7 @@ void HumanPlayer::move(std::vector<Player*>* playerListPointer, int size) {
 
 	for (int k = 0; k < playerList.size(); k++) {
 		if (playerList[k]->getXPosition() == movingToX && playerList[k]->getYPosition() == movingToY) { // if there's someone on the point
-			if (playerList[k]->getMovingTo() != movingTo || playerList[k]->getMovingTo() != nullptr) { // and they're not moving
+			if (playerList[k]->getMovingTo() == movingTo || playerList[k]->getMovingTo() == nullptr) { // and they're not moving
 				return; // we can't move there. Stop.
 			}
 		}

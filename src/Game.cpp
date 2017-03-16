@@ -18,45 +18,56 @@ Game::Game() : size(15) {
 
 	// TODO: include logic for creating the player list
 	srand(time(NULL));
-	int x = rand() % size;
-	int y = rand() % size;
-	// int x = 5;
-	// int y = 5;
+	// int x = rand() % size;
+	// int y = rand() % size;
+	int x = 5;
+	int y = 5;
 	playerList.push_back(new HumanPlayer(x, y));
 	//printf("HumanPlayer created\n");
-	// x = 10;
-	// y = 10;
-	// AlienPlayer* alienPlayer = new AlienPlayer(x, y);
-	// playerList.push_back(alienPlayer);
+	x = 5;
+	y = 10;
+	AlienPlayer* alienPlayer1 = new AlienPlayer(x, y);
+	playerList.push_back(alienPlayer1);
+	x = 5;
+	y = 14;
+	AlienPlayer* alienPlayer2 = new AlienPlayer(x, y);
+	playerList.push_back(alienPlayer2);
 	// //printf("AlienPlayer created\n");
-	// x = 5;
-	// y = 10;
-	// CowboyPlayer* cowboyPlayer = new CowboyPlayer(x, y);
-	// playerList.push_back(cowboyPlayer);
+	x = 10;
+	y = 5;
+	CowboyPlayer* cowboyPlayer1 = new CowboyPlayer(x, y);
+	playerList.push_back(cowboyPlayer1);
+	x = 14;
+	y = 5;
+	CowboyPlayer* cowboyPlayer2 = new CowboyPlayer(x, y);
+	playerList.push_back(cowboyPlayer2);
+
 	//printf("CowboyPlayer created\n");
+
 	// requires having some players created
-	for (int i = 1; i < 5; i++) {
-		bool done = false;
-		bool changed = false;
-		do {
-			x = rand() % size;
-			y = rand() % size;
-			for (int j = 0; j < playerList.size(); j++) {
-				if (x == playerList[j]->getXPosition() && y == playerList[j]->getYPosition()) {
-					changed = true;
-				}
-			}
-			done = !changed;
-		} while (!done);
-		switch(i % 2) {
-			case 0:
-				playerList.push_back(new AlienPlayer(x, y));
-				break;
-			case 1:
-				playerList.push_back(new CowboyPlayer(x, y));
-				break;
-		}
-	}
+
+	// for (int i = 1; i < 5; i++) {
+	// 	bool done = false;
+	// 	bool changed = false;
+	// 	do {
+	// 		x = rand() % size;
+	// 		y = rand() % size;
+	// 		for (int j = 0; j < playerList.size(); j++) {
+	// 			if (x == playerList[j]->getXPosition() && y == playerList[j]->getYPosition()) {
+	// 				changed = true;
+	// 			}
+	// 		}
+	// 		done = !changed;
+	// 	} while (!done);
+	// 	switch(i % 2) {
+	// 		case 0:
+	// 			playerList.push_back(new AlienPlayer(x, y));
+	// 			break;
+	// 		case 1:
+	// 			playerList.push_back(new CowboyPlayer(x, y));
+	// 			break;
+	// 	}
+	// }
 	// random placement
 	// Human player must always be first in this list
 }

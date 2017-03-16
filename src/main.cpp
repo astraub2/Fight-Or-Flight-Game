@@ -277,6 +277,10 @@ int main() {
 						//map[10][10].setTexture(chartexture);
 						//increase player bullets by 1,
 						//call players bullet val to get int for below
+						canmove=false;
+						canshoot=false;
+						shootplasma=false;
+						shootbullet=false;
 						youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
 							
 						std::vector<Player*> players = *(game.getPlayerList());
@@ -291,17 +295,17 @@ int main() {
 					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
 					 	if (youDied==false){
 					 	std::vector<Player*> players = *(game.getPlayerList());
-	 					Player* thePlayer = players[0];
- 						int x=thePlayer->getXPosition();
+	 				// 	Player* thePlayer = players[0];
+ 					// 	int x=thePlayer->getXPosition();
  						
- 					 	int y=thePlayer->getYPosition();
+ 					//  	int y=thePlayer->getYPosition();
 
- 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						for(int j=0; j<8; j++){
+ 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						// for(int j=0; j<8; j++){
 
-							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						}
+						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						// }
 						//redraw char here
 						//std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
@@ -318,6 +322,7 @@ int main() {
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
+						canmove=false;
 						canshoot=true;
 						shootplasma=true;
 					 }
@@ -329,17 +334,17 @@ int main() {
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 100 && event.mouseButton.x >= 75 && event.mouseButton.y >= 50) {
 						if (youDied==false){
 						std::vector<Player*> players = *(game.getPlayerList());
-	 					Player* thePlayer = players[0];
- 						int x=thePlayer->getXPosition();
+	 				// 	Player* thePlayer = players[0];
+ 					// 	int x=thePlayer->getXPosition();
  						
- 					 	int y=thePlayer->getYPosition();
+ 					//  	int y=thePlayer->getYPosition();
 
- 						int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						for(int j=0; j<8; j++){
+ 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
+						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
+						// for(int j=0; j<8; j++){
 
-							map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						}
+						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
+						// }
 						//redraw char here
 						//std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
@@ -356,6 +361,7 @@ int main() {
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
 						movetable.setTexture(movetabletexture);
+						canmove=false;
 	 					canshoot=true;
 						shootbullet=true;
 						 }
@@ -366,7 +372,11 @@ int main() {
 					// //SHIELD PLASMA
 					else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 150 && event.mouseButton.x >= 5 && event.mouseButton.y >= 100) {
 						if (youDied==false){
-						youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::PLASMA, 0, 0, 0));
+							canmove=false;
+							canshoot=false;
+							shootplasma=false;
+							shootbullet=false;
+							youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::PLASMA, 0, 0, 0));
 						
 					 }
 					}
@@ -375,7 +385,11 @@ int main() {
 						
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
 						if (youDied==false){
-						youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, 0));
+							canmove=false;
+							canshoot=false;
+							shootplasma=false;
+							shootbullet=false;
+							youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, 0));
 	
 						 }
 							}
@@ -383,7 +397,9 @@ int main() {
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						if (youDied==false){
-			
+						canshoot=false;
+						shootplasma=false;
+						shootbullet=false;
 						movetable.setTexture(movetabletexture);
 						canmove=true;
 
