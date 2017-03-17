@@ -83,6 +83,11 @@ int main() {
 		{
 		std::cout << "Error: image not found" << std::endl;
 		}
+	sf::Texture wontexture;
+	if (!wontexture.loadFromFile("YouWon.png", sf::IntRect(0, 0, 120, 50)))
+		{
+		std::cout << "Error: image not found" << std::endl;
+		}
 	//////////////////////////////////////////////////////
 	sf::Texture bullet0texture;
 	if (!bullet0texture.loadFromFile("bullet0.png", sf::IntRect(0, 0, 80, 50)))
@@ -169,6 +174,7 @@ int main() {
 	//died.setTexture(diedtexture);
 	died.move(650, 5);
 	sf::Sprite welcome;
+
 	//died.setTexture(diedtexture);
 	welcome.move(650, 100);
 
@@ -690,6 +696,10 @@ int main() {
 				    }
 				}
  						died.setTexture(diedtexture);
+ 						welcome.setTexture(welcomemessagetexture);
+ 					}
+ 					if(youDied==false && players.size()==1){
+ 						died.setTexture(wontexture);
  						welcome.setTexture(welcomemessagetexture);
  					}
 						
