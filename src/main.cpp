@@ -280,58 +280,39 @@ int main() {
 				//LOAD 
 				    } else if (event.mouseButton.x <= 120 && event.mouseButton.y <= 50 && event.mouseButton.x >= 5 && event.mouseButton.y >= 0) {
 						if (youDied==false){
-						//map[10][10].setTexture(chartexture);
-						//increase player bullets by 1,
-						//call players bullet val to get int for below
-						canmove=false;
-						canshoot=false;
-						shootplasma=false;
-						shootbullet=false;
-						youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
-							
-						std::vector<Player*> players = *(game.getPlayerList());
-						numBullets = players[0]->getAmmo();
-						//playerMove=HumanPlayer.reload()
-						// PlayerMove playerMove = new PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, &players[0]);
-						// game.playRound(playerMove);
-						bullet.setTexture(bullets[numBullets]);
-					}
+							//call players bullet val to get int for below
+							canmove=false;
+							canshoot=false;
+							shootplasma=false;
+							shootbullet=false;
+							youDied = game.playRound(PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, 0, 0, 0));
+								
+							std::vector<Player*> players = *(game.getPlayerList());
+							numBullets = players[0]->getAmmo();
+							bullet.setTexture(bullets[numBullets]);
+						}
 					}
 					 //SHOOT PLASMA
 					 else if (event.mouseButton.x <= 75 && event.mouseButton.y <= 100 && event.mouseButton.x >= 5 && event.mouseButton.y >= 50) {
 					 	if (youDied==false){
 					 	std::vector<Player*> players = *(game.getPlayerList());
-	 				// 	Player* thePlayer = players[0];
- 					// 	int x=thePlayer->getXPosition();
- 						
- 					//  	int y=thePlayer->getYPosition();
-
- 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						// for(int j=0; j<8; j++){
-
-						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						// }
-						//redraw char here
-						//std::vector<Player*> players = *(game.getPlayerList());
 	 					numberOfPlayers=players.size();
 	 					
 	 					for(int i=0; i<numberOfPlayers; i++){
 	 						
 	 						Player* thePlayer = players[i];
-	 						//printf("player %d accessed\n", i + 1);
-	 					//for each player we need coordinates
+	 						//for each player we need coordinates
 	 						int thePlayerX=thePlayer->getXPosition();
-	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
 	 					 	int thePlayerY=thePlayer->getYPosition();
 	 						int thePlayerType=thePlayer->getPlayerType();
 	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
 	 					//dropdown
-						movetable.setTexture(movetabletexture);
+						
+					 	}
+					 	movetable.setTexture(movetabletexture);
 						canmove=false;
 						canshoot=true;
 						shootplasma=true;
-					 }
 					}
 				}
 
@@ -339,40 +320,27 @@ int main() {
 					//SHOOT BULLET
 					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 100 && event.mouseButton.x >= 75 && event.mouseButton.y >= 50) {
 						if (youDied==false){
-						std::vector<Player*> players = *(game.getPlayerList());
-	 				// 	Player* thePlayer = players[0];
- 					// 	int x=thePlayer->getXPosition();
- 						
- 					//  	int y=thePlayer->getYPosition();
-
- 					// 	int xvalues[9]={-1,0,1,-1,1,-1,0,1};
-						// int yvalues[9]={-1,-1,-1,0,0,1,1,1};
-						// for(int j=0; j<8; j++){
-
-						// 	map[x+(xvalues[j])][y+(yvalues[j])].setTexture(movetotexture);
-						// }
-						//redraw char here
-						//std::vector<Player*> players = *(game.getPlayerList());
-	 					numberOfPlayers=players.size();
-	 					
-	 					for(int i=0; i<numberOfPlayers; i++){
-	 						
-	 						Player* thePlayer = players[i];
-	 						//printf("player %d accessed\n", i + 1);
-	 					//for each player we need coordinates
-	 						int thePlayerX=thePlayer->getXPosition();
-	 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
-	 					 	int thePlayerY=thePlayer->getYPosition();
-	 						int thePlayerType=thePlayer->getPlayerType();
-	 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
-	 					//dropdown
-						movetable.setTexture(movetabletexture);
-						canmove=false;
-	 					canshoot=true;
-						shootbullet=true;
-						 }
-							 }
-							}
+							std::vector<Player*> players = *(game.getPlayerList());
+		 					numberOfPlayers=players.size();
+		 					
+		 					for(int i=0; i<numberOfPlayers; i++){
+		 						
+		 						Player* thePlayer = players[i];
+		 						//printf("player %d accessed\n", i + 1);
+		 					//for each player we need coordinates
+		 						int thePlayerX=thePlayer->getXPosition();
+		 						//printf("player %d's x = %d\n", i + 1, thePlayerX);
+		 					 	int thePlayerY=thePlayer->getYPosition();
+		 						int thePlayerType=thePlayer->getPlayerType();
+		 						map[thePlayerX][thePlayerY].setTexture(thePlayerTextures[thePlayerType]);
+		 					//dropdown
+						 	}
+						 	movetable.setTexture(movetabletexture);
+							canmove=false;
+		 					canshoot=true;
+							shootbullet=true;
+						}
+					}
 
 
 					// //SHIELD PLASMA
@@ -384,35 +352,31 @@ int main() {
 							shootbullet=false;
 							youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::PLASMA, 0, 0, 0));
 						
-					 }
+					 	}
 					}
 
 					// //SHIELD BULLET
 						
-					 else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
+					else if (event.mouseButton.x <= 150 && event.mouseButton.y <= 150 && event.mouseButton.x >= 75 && event.mouseButton.y >= 100) {
 						if (youDied==false){
 							canmove=false;
 							canshoot=false;
 							shootplasma=false;
 							shootbullet=false;
 							youDied = game.playRound(PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, 0));
-	
-						 }
-							}
+						}
+					}
 
 					//MOVE
 					else if (event.mouseButton.y <= 225 && event.mouseButton.x <= 120 && event.mouseButton.y >= 175 && event.mouseButton.x >= 5) {
 						if (youDied==false){
-						canshoot=false;
-						shootplasma=false;
-						shootbullet=false;
-						movetable.setTexture(movetabletexture);
-						canmove=true;
-
-						
-					
-				}
-			}
+							canshoot=false;
+							shootplasma=false;
+							shootbullet=false;
+							movetable.setTexture(movetabletexture);
+							canmove=true;
+						}
+					}
 					//************
 					//LOGIC FOR MOVE AND SHOOT PLASMA/BULLET
 					//**********************
@@ -452,7 +416,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 0, -1, 0));
 					
@@ -478,7 +441,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, -1, 0));
 					
@@ -504,7 +466,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, 0, 0));
 					
@@ -530,7 +491,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, 0, 0));
 					
@@ -556,7 +516,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, 1, 0));
 					
@@ -582,7 +541,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 0, 1, 0));
 					
@@ -609,7 +567,6 @@ int main() {
 					}
 					//shoot logic
 						else if (canshoot==true){
-								//map[5][5].setTexture(chartexture);
 								if(shootplasma==true){
 									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, 1, 1, 0));
 					

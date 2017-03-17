@@ -151,17 +151,37 @@ bool CowboyPlayer::getMarkedForDeath() {
 }
 
 PlayerMove CowboyPlayer::playMove(PlayerMove humanPlayerMove, Point*** pointListPointer, int size, int index) {
-	//Temporary: this will be changed later
+	//Cowboy "AI": Randomly move and shoot metal bullets. If it doesn't have enough ammo to shoot it will reload instead.
+	// random seed based on index of player and human player's move
+	// if I didn't do this all players did the same thing every round
+	srand((int) time(NULL) + (100000 * index) + (10000 * humanPlayerMove.getXOffset()) - (1000 * humanPlayerMove.getYOffset()));
+	int moveOrShoot = rand() % 2;
+	int direction = rand() % 8;
+
+ 	int xValues[8]={-1,0,1,-1,1,-1,0,1};
+	int yValues[8]={-1,-1,-1,0,0,1,1,1};
+
+	int xOffset = xValues[direction];
+	int yOffset = yValues[direction];
+
 	Point* setMovingTo;
 
-	int xOffset = 0;
-	int yOffset = 0;
-
-	if (x + xOffset >= size || x + xOffset < 0 || y + yOffset >= size || y + yOffset < 0) {
-		setMovingTo = &(*pointListPointer)[x][y];
+	if (moveOrShoot == 0) {
+		if (x + xOffset >= size || x + xOffset < 0 || y + yOffset >= size || y + yOffset < 0) {
+			setMovingTo = &(*pointListPointer)[x][y];
+		} else {
+			setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];
+		}
+		movingTo = setMovingTo;
+		std::cout << "Cowboy player at (" << this->x << ", " << this->y << ") moving in direction (" << xOffset << ", " << yOffset << ")" << std::endl;
+		return PlayerMove(PlayerMove::MOVE, PlayerMove::NONE, xOffset, yOffset, index);
 	} else {
-		setMovingTo = &(*pointListPointer)[x + xOffset][y + yOffset];
+		if (ammo < 1) {
+			std::cout << "Cowboy player at (" << this->x << ", " << this->y << ") reloading" << std::endl;
+			return PlayerMove(PlayerMove::RELOAD, PlayerMove::NONE, xOffset, yOffset, index);
+		} else {
+			std::cout << "Cowboy player at (" << this->x << ", " << this->y << ") shooting in direction (" << xOffset << ", " << yOffset << ")" << std::endl;
+			return PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, xOffset, yOffset, index);
+		}
 	}
-	movingTo = setMovingTo;
-	return PlayerMove(PlayerMove::SHIELD, PlayerMove::METAL, 0, 0, index);
 }

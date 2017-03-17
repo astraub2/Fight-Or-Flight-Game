@@ -1,75 +1,42 @@
 #include "Game.hpp"
 #include <vector>
-#include <cstdlib>
-#include <ctime>
 
 Game::Game() : size(15) {
-	//printf("Game constructor called\n");
 	board = (Point **) malloc (size * sizeof(Point *));
 	for (int i = 0; i < size; i++) {
 		board[i] = (Point *) malloc(size * sizeof(Point));
 		for (int j = 0; j < size; j++) {
 			board[i][j] = Point(i, j);
-			// printf("board[%d][%d] created\n", i, j);
 		}
 	}
 
-	// printf("Board initialized\n");
+	srand(time(NULL)); // random seed for the randomizer
+	int x = rand() % size;
+	int y = rand() % size;
+	playerList.push_back(new HumanPlayer(x, y)); // human player at random coords
 
-	// TODO: include logic for creating the player list
-	srand(time(NULL));
-	// int x = rand() % size;
-	// int y = rand() % size;
-	int x = 5;
-	int y = 5;
-	playerList.push_back(new HumanPlayer(x, y));
-	//printf("HumanPlayer created\n");
-	x = 5;
-	y = 10;
-	AlienPlayer* alienPlayer1 = new AlienPlayer(x, y);
-	playerList.push_back(alienPlayer1);
-	x = 5;
-	y = 14;
-	AlienPlayer* alienPlayer2 = new AlienPlayer(x, y);
-	playerList.push_back(alienPlayer2);
-	// //printf("AlienPlayer created\n");
-	x = 10;
-	y = 5;
-	CowboyPlayer* cowboyPlayer1 = new CowboyPlayer(x, y);
-	playerList.push_back(cowboyPlayer1);
-	x = 14;
-	y = 5;
-	CowboyPlayer* cowboyPlayer2 = new CowboyPlayer(x, y);
-	playerList.push_back(cowboyPlayer2);
-
-	//printf("CowboyPlayer created\n");
-
-	// requires having some players created
-
-	// for (int i = 1; i < 5; i++) {
-	// 	bool done = false;
-	// 	bool changed = false;
-	// 	do {
-	// 		x = rand() % size;
-	// 		y = rand() % size;
-	// 		for (int j = 0; j < playerList.size(); j++) {
-	// 			if (x == playerList[j]->getXPosition() && y == playerList[j]->getYPosition()) {
-	// 				changed = true;
-	// 			}
-	// 		}
-	// 		done = !changed;
-	// 	} while (!done);
-	// 	switch(i % 2) {
-	// 		case 0:
-	// 			playerList.push_back(new AlienPlayer(x, y));
-	// 			break;
-	// 		case 1:
-	// 			playerList.push_back(new CowboyPlayer(x, y));
-	// 			break;
-	// 	}
-	// }
-	// random placement
-	// Human player must always be first in this list
+	for (int i = 1; i < 5; i++) { // randomize placement of four other players
+		bool done = false;
+		bool changed = false;
+		do {
+			x = rand() % size;
+			y = rand() % size;
+			for (int j = 0; j < playerList.size(); j++) {
+				if (x == playerList[j]->getXPosition() && y == playerList[j]->getYPosition()) {
+					changed = true;
+				}
+			}
+			done = !changed;
+		} while (!done);
+		switch(i % 2) {
+			case 0:
+				playerList.push_back(new AlienPlayer(x, y));
+				break;
+			case 1:
+				playerList.push_back(new CowboyPlayer(x, y));
+				break;
+		}
+	}
 }
 
 Game::~Game() {
@@ -129,7 +96,6 @@ bool Game::playRound(PlayerMove humanPlayerMove) {
 	//marks handled in the player functions
 	//kill all players marked for death
 	if (playerList[0]->getMarkedForDeath()) {
-		std::cout << "Human Player died" << std::endl;
 		return true;
 	}
 
@@ -137,7 +103,6 @@ bool Game::playRound(PlayerMove humanPlayerMove) {
 	while (current_position != playerList.end()) {
 		if ((*current_position)->getMarkedForDeath()) {
 			std::vector<Player*>::iterator new_position = playerList.erase(current_position);
-			std::cout << "Someone died" << std::endl;
 			current_position = new_position;
 		} else {
 			current_position++;
@@ -151,7 +116,6 @@ bool Game::playRound(PlayerMove humanPlayerMove) {
 		playerList[i]->resetMovingTo(&board);
 	}
 	//if the human player is marked for death, somehow let the main function know. return a value: true if human player died, false if they didn't
-	std::cout << "PlayRound completed" << std::endl;
 	return false;
 }
 

@@ -11,6 +11,8 @@
 #include "PlayerMove.hpp"
 #include "Point.hpp"
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 class Player {
 public:
