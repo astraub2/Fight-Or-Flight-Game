@@ -390,22 +390,22 @@ int main() {
 					//shoot logic
 						else if (canshoot==true){
 								//map[5][5].setTexture(chartexture);
-								if(shootplasma==true){
-									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, -1, 0));
+							if(shootplasma==true){
+								youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::PLASMA, -1, -1, 0));
 					
 
-									shootplasma=false;
-								}
-								else if(shootbullet==true){
-									youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, -1, -1, 0));
+								shootplasma=false;
+							}
+							else if(shootbullet==true){
+								youDied = game.playRound(PlayerMove(PlayerMove::SHOOT, PlayerMove::METAL, -1, -1, 0));
 					
-									shootbullet=false;
-								}
+								shootbullet=false;
+							}
 
 								
 							canshoot=false;
 						}
-						}
+					}
 						//UP
 						else if (event.mouseButton.y <=290  && event.mouseButton.x <= 85 && event.mouseButton.y >= 250 && event.mouseButton.x >= 45) {
 						
